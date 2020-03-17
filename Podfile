@@ -9,5 +9,6 @@ target 'PedoMeter' do
 
   pod 'Toaster'
   pod 'SwiftLint'
+  pod 'IQKeyboardManagerSwift'
 
 end

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,17 +22,24 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="VTe-ya-sbQ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="oGS-nO-8ln">
+                                <rect key="frame" x="62" y="398.5" width="290" height="99"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="oGS-nO-8ln" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.7" id="2mY-tQ-8NF"/>
                             <constraint firstAttribute="trailing" secondItem="VTe-ya-sbQ" secondAttribute="trailing" id="5Im-bp-wSs"/>
                             <constraint firstItem="bQJ-pa-pAA" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="9WG-Gf-UUU"/>
                             <constraint firstAttribute="trailing" secondItem="bQJ-pa-pAA" secondAttribute="trailing" id="BFJ-4r-tMQ"/>
                             <constraint firstItem="VTe-ya-sbQ" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="BL6-W4-5as"/>
                             <constraint firstAttribute="bottom" secondItem="VTe-ya-sbQ" secondAttribute="bottom" id="Fv2-uT-Pvt"/>
+                            <constraint firstItem="oGS-nO-8ln" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.11" id="QZW-hR-n5S"/>
+                            <constraint firstItem="oGS-nO-8ln" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="SkW-11-yBx"/>
                             <constraint firstAttribute="bottom" secondItem="bQJ-pa-pAA" secondAttribute="bottom" id="VsU-48-706"/>
                             <constraint firstItem="bQJ-pa-pAA" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="caR-MF-SJY"/>
                             <constraint firstItem="VTe-ya-sbQ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="pLo-br-j4E"/>
+                            <constraint firstItem="oGS-nO-8ln" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="vRm-n1-dlF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -43,5 +51,6 @@
     </scenes>
     <resources>
         <image name="background" width="414" height="736.5"/>
+        <image name="logo" width="287" height="77.5"/>
     </resources>
 </document>

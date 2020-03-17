@@ -18,8 +18,9 @@ class Constant: NSObject {
     public enum Controllers{
         case StudyCode
         case Login
-        case TimeWiseSteps
-        case StepsDetails
+        case Home
+        case DaysDetails
+        case HoursWiseSteps
         case EndPArticpton
         case PartionEnded
         
@@ -28,14 +29,14 @@ class Constant: NSObject {
             //SignupFirstEntryVC
             case .StudyCode:
                 return Storyboards.main.instantiateViewController(withIdentifier : "StudyCodeVC")
-                
             case .Login:
                 return Storyboards.main.instantiateViewController(withIdentifier: "LoginVC")
-                
-            case .TimeWiseSteps:
-                return Storyboards.main.instantiateViewController(withIdentifier: "TimeWiseStepsVC")
-            case .StepsDetails:
-                return Storyboards.main.instantiateViewController(withIdentifier: "StepsDetailsVC")
+            case .Home:
+                return Storyboards.main.instantiateViewController(withIdentifier: "HomeTotalStepsVC")
+            case .DaysDetails:
+                return Storyboards.main.instantiateViewController(withIdentifier: "DaysWiseVC")
+            case .HoursWiseSteps:
+                return Storyboards.main.instantiateViewController(withIdentifier: "HoursWiseStepsVC")
             case .EndPArticpton:
                 return Storyboards.main.instantiateViewController(withIdentifier: "EndParticiptonVC")
             case .PartionEnded:
@@ -50,12 +51,15 @@ class Constant: NSObject {
     
     
     // TimeWiseSteps VC
-    static let timeWiseFrstLblArr = ["Today", "Last 24 Hours", "This Week", "This Month"]
-    static let timeWiseStepsLblArr = ["80 Steps", "56 Steps", "1092 Steps", "22410 Steps"]
-    static let timeWiseImgArr = ["step", "hour", "week", "month"]
+    static let homeFrstLblArr = ["Today", "Last 24 Hours", "This Week", "This Month"]
+    static let homeStepsLblArr = ["80 Steps", "56 Steps", "1092 Steps", "22410 Steps"]
+    static let homeImgArr = ["step", "hour", "week", "month"]
     
     //StepsDetails VC
     static let detailsTimeSlotArr = ["8am-9am", "9am-10am", "10am-11am", "12pm-1pm", "1pm-2pm", "3pm-4pm", "5pm-6pm"]
     static let detailsStepsCountArr = ["992 Steps", "82 Steps", "92 Steps", "92 Steps", "20 Steps", "62 Steps", "62 Steps"]
+    
+    //UserDefaults Data
+    static let usrNme = "usrNme"
     
 }

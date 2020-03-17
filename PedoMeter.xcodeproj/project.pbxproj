@@ -8,9 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1AE0180C69C8BA3D61381E79 /* Pods_PedoMeter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 878F7415F3D569F9B97B62A9 /* Pods_PedoMeter.framework */; };
+		C904D45E241BA16A00A570E8 /* hoursStepsModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C904D45D241BA16A00A570E8 /* hoursStepsModal.swift */; };
+		C91C3CD7240E2EC2008060B8 /* HealthKitSetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91C3CD6240E2EC2008060B8 /* HealthKitSetupAssistant.swift */; };
 		C91ED5022409512D00CC9621 /* ParticipatonEndedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91ED5012409512D00CC9621 /* ParticipatonEndedVC.swift */; };
 		C91ED505240951F700CC9621 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91ED504240951F700CC9621 /* Constant.swift */; };
 		C91ED507240953E400CC9621 /* ToastMsg.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91ED506240953E400CC9621 /* ToastMsg.swift */; };
+		C927BDCF241F9AB200794904 /* HoursWiseStepsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C927BDCE241F9AB200794904 /* HoursWiseStepsVC.swift */; };
+		C931B13A2419258200054263 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C931B1392419258100054263 /* Utils.swift */; };
 		C93FE789240D044A00BA311A /* sf-ui-display-ultralight-58646b19bf205.otf in Resources */ = {isa = PBXBuildFile; fileRef = C93FE780240D044A00BA311A /* sf-ui-display-ultralight-58646b19bf205.otf */; };
 		C93FE78A240D044A00BA311A /* sf-ui-display-light-58646b33e0551.otf in Resources */ = {isa = PBXBuildFile; fileRef = C93FE781240D044A00BA311A /* sf-ui-display-light-58646b33e0551.otf */; };
 		C93FE78B240D044A00BA311A /* sf-ui-display-semibold-58646eddcae92.otf in Resources */ = {isa = PBXBuildFile; fileRef = C93FE782240D044A00BA311A /* sf-ui-display-semibold-58646eddcae92.otf */; };
@@ -42,17 +46,21 @@
 		C9BCFF942408F39000222130 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9BCFF922408F39000222130 /* LaunchScreen.storyboard */; };
 		C9BCFF9F24091A2E00222130 /* StudyCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BCFF9E24091A2E00222130 /* StudyCodeVC.swift */; };
 		C9BCFFA22409270800222130 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BCFFA12409270800222130 /* LoginVC.swift */; };
-		C9CBF406240937A100D043FD /* TimeWiseStepsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CBF405240937A100D043FD /* TimeWiseStepsVC.swift */; };
-		C9CBF40924093EB500D043FD /* StepsDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CBF40824093EB500D043FD /* StepsDetailsVC.swift */; };
+		C9CBF406240937A100D043FD /* HomeTotalStepsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CBF405240937A100D043FD /* HomeTotalStepsVC.swift */; };
+		C9CBF40924093EB500D043FD /* DaysWiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CBF40824093EB500D043FD /* DaysWiseVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6E8995A9F31171B4E03BD1DE /* Pods-PedoMeter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PedoMeter.debug.xcconfig"; path = "Target Support Files/Pods-PedoMeter/Pods-PedoMeter.debug.xcconfig"; sourceTree = "<group>"; };
 		878F7415F3D569F9B97B62A9 /* Pods_PedoMeter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PedoMeter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EAF4737C8DEF0C5DF0A3824 /* Pods-PedoMeter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PedoMeter.release.xcconfig"; path = "Target Support Files/Pods-PedoMeter/Pods-PedoMeter.release.xcconfig"; sourceTree = "<group>"; };
+		C904D45D241BA16A00A570E8 /* hoursStepsModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hoursStepsModal.swift; sourceTree = "<group>"; };
+		C91C3CD6240E2EC2008060B8 /* HealthKitSetupAssistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitSetupAssistant.swift; sourceTree = "<group>"; };
 		C91ED5012409512D00CC9621 /* ParticipatonEndedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipatonEndedVC.swift; sourceTree = "<group>"; };
 		C91ED504240951F700CC9621 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		C91ED506240953E400CC9621 /* ToastMsg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMsg.swift; sourceTree = "<group>"; };
+		C927BDCE241F9AB200794904 /* HoursWiseStepsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoursWiseStepsVC.swift; sourceTree = "<group>"; };
+		C931B1392419258100054263 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		C93FE780240D044A00BA311A /* sf-ui-display-ultralight-58646b19bf205.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-ultralight-58646b19bf205.otf"; sourceTree = "<group>"; };
 		C93FE781240D044A00BA311A /* sf-ui-display-light-58646b33e0551.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-light-58646b33e0551.otf"; sourceTree = "<group>"; };
 		C93FE782240D044A00BA311A /* sf-ui-display-semibold-58646eddcae92.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-semibold-58646eddcae92.otf"; sourceTree = "<group>"; };
@@ -87,8 +95,8 @@
 		C9BCFF952408F39000222130 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9BCFF9E24091A2E00222130 /* StudyCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyCodeVC.swift; sourceTree = "<group>"; };
 		C9BCFFA12409270800222130 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		C9CBF405240937A100D043FD /* TimeWiseStepsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeWiseStepsVC.swift; sourceTree = "<group>"; };
-		C9CBF40824093EB500D043FD /* StepsDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsDetailsVC.swift; sourceTree = "<group>"; };
+		C9CBF405240937A100D043FD /* HomeTotalStepsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTotalStepsVC.swift; sourceTree = "<group>"; };
+		C9CBF40824093EB500D043FD /* DaysWiseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysWiseVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +136,14 @@
 				C91ED506240953E400CC9621 /* ToastMsg.swift */,
 			);
 			path = Constant;
+			sourceTree = "<group>";
+		};
+		C936FA3C241F93CF00F9B9AB /* HoursWiseSteps */ = {
+			isa = PBXGroup;
+			children = (
+				C927BDCE241F9AB200794904 /* HoursWiseStepsVC.swift */,
+			);
+			path = HoursWiseSteps;
 			sourceTree = "<group>";
 		};
 		C93FE76B240D03C500BA311A /* Classes */ = {
@@ -198,6 +214,8 @@
 			isa = PBXGroup;
 			children = (
 				C9410850240A3EDE00EE79C1 /* Apputils.swift */,
+				C931B1392419258100054263 /* Utils.swift */,
+				C904D45D241BA16A00A570E8 /* hoursStepsModal.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -231,10 +249,11 @@
 		C9BCFF862408F38F00222130 /* PedoMeter */ = {
 			isa = PBXGroup;
 			children = (
-				C94BFE19240D3F620039676B /* PedoMeter.entitlements */,
 				C93FE76C240D03F400BA311A /* Fonts */,
 				C93FE76B240D03C500BA311A /* Classes */,
 				C9BCFF872408F38F00222130 /* AppDelegate.swift */,
+				C91C3CD6240E2EC2008060B8 /* HealthKitSetupAssistant.swift */,
+				C94BFE19240D3F620039676B /* PedoMeter.entitlements */,
 				C9BCFF902408F39000222130 /* Assets.xcassets */,
 				C9BCFF952408F39000222130 /* Info.plist */,
 			);
@@ -255,8 +274,9 @@
 			children = (
 				C9BCFF9D24091A0E00222130 /* StudyCode */,
 				C9BCFFA0240926D600222130 /* Login */,
-				C9CBF4042409374200D043FD /* TimeWiseSteps */,
-				C9CBF40724093E8000D043FD /* StepsDetails */,
+				C9CBF4042409374200D043FD /* HomeTotalSteps */,
+				C9CBF40724093E8000D043FD /* DaysWiseVC */,
+				C936FA3C241F93CF00F9B9AB /* HoursWiseSteps */,
 				C94C6D1A24094EEB00AAAC10 /* EndStudyParticpton */,
 				C91ED5002409510500CC9621 /* ParticipatonEnded */,
 			);
@@ -279,20 +299,20 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		C9CBF4042409374200D043FD /* TimeWiseSteps */ = {
+		C9CBF4042409374200D043FD /* HomeTotalSteps */ = {
 			isa = PBXGroup;
 			children = (
-				C9CBF405240937A100D043FD /* TimeWiseStepsVC.swift */,
+				C9CBF405240937A100D043FD /* HomeTotalStepsVC.swift */,
 			);
-			path = TimeWiseSteps;
+			path = HomeTotalSteps;
 			sourceTree = "<group>";
 		};
-		C9CBF40724093E8000D043FD /* StepsDetails */ = {
+		C9CBF40724093E8000D043FD /* DaysWiseVC */ = {
 			isa = PBXGroup;
 			children = (
-				C9CBF40824093EB500D043FD /* StepsDetailsVC.swift */,
+				C9CBF40824093EB500D043FD /* DaysWiseVC.swift */,
 			);
-			path = StepsDetails;
+			path = DaysWiseVC;
 			sourceTree = "<group>";
 		};
 		D7B59F6933740FF90B292FB5 /* Pods */ = {
@@ -441,15 +461,19 @@
 			files = (
 				C9BCFF882408F38F00222130 /* AppDelegate.swift in Sources */,
 				C9BCFFA22409270800222130 /* LoginVC.swift in Sources */,
+				C927BDCF241F9AB200794904 /* HoursWiseStepsVC.swift in Sources */,
 				C91ED5022409512D00CC9621 /* ParticipatonEndedVC.swift in Sources */,
-				C9CBF40924093EB500D043FD /* StepsDetailsVC.swift in Sources */,
+				C931B13A2419258200054263 /* Utils.swift in Sources */,
+				C9CBF40924093EB500D043FD /* DaysWiseVC.swift in Sources */,
 				C941084C240A3B4300EE79C1 /* OutletExtension.swift in Sources */,
+				C91C3CD7240E2EC2008060B8 /* HealthKitSetupAssistant.swift in Sources */,
 				C9BCFF9F24091A2E00222130 /* StudyCodeVC.swift in Sources */,
+				C904D45E241BA16A00A570E8 /* hoursStepsModal.swift in Sources */,
 				C94C6D1C24094F1F00AAAC10 /* EndParticiptonVC.swift in Sources */,
 				C941084E240A3DC300EE79C1 /* UIVCExtension.swift in Sources */,
 				C91ED507240953E400CC9621 /* ToastMsg.swift in Sources */,
 				C91ED505240951F700CC9621 /* Constant.swift in Sources */,
-				C9CBF406240937A100D043FD /* TimeWiseStepsVC.swift in Sources */,
+				C9CBF406240937A100D043FD /* HomeTotalStepsVC.swift in Sources */,
 				C9410851240A3EDE00EE79C1 /* Apputils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -599,6 +623,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TVFK4KS7XW;
 				INFOPLIST_FILE = PedoMeter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -619,6 +644,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TVFK4KS7XW;
 				INFOPLIST_FILE = PedoMeter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

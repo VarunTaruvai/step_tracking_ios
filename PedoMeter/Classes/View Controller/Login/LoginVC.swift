@@ -40,7 +40,8 @@ class LoginVC: UIViewController {
             
         else {
             
-            let vc = Constant.Controllers.TimeWiseSteps.get() as! TimeWiseStepsVC
+            Utils.saveTheContent(value: usernmeTxtField.text?.trimWhiteSpaces() as Any, key: Constant.usrNme)
+            let vc = Constant.Controllers.Home.get() as! HomeTotalStepsVC
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

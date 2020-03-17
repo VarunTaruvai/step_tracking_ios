@@ -9,7 +9,7 @@
 import UIKit
 
 class StudyCodeVC: UIViewController {
-
+    
     @IBOutlet weak var studyCodeTxtField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,3 +32,4 @@ class StudyCodeVC: UIViewController {
     }
     
 }
+

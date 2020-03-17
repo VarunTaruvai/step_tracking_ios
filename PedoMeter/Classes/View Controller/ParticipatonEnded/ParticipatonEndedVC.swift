@@ -14,7 +14,7 @@ class ParticipatonEndedVC: UIViewController {
         super.viewDidLoad()
 
         self.navigationItem.hidesBackButton = true
-        self.commonNavigationBar(title: "", controller: Constant.Controllers.TimeWiseSteps)
+        self.commonNavigationBar(title: "", controller: Constant.Controllers.PartionEnded)
         // Do any additional setup after loading the view.
     }
 }
