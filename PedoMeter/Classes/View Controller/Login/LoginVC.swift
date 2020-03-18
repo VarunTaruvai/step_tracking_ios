@@ -43,6 +43,9 @@ class LoginVC: UIViewController {
             Utils.saveTheContent(value: usernmeTxtField.text?.trimWhiteSpaces() as Any, key: Constant.usrNme)
             let vc = Constant.Controllers.Home.get() as! HomeTotalStepsVC
             self.navigationController?.pushViewController(vc, animated: true)
+            
+            self.removePreviousViewControllers()
+            
         }
     }
     

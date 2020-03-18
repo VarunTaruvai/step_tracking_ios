@@ -39,6 +39,22 @@ extension UIViewController: UITextFieldDelegate {
         }
     }
     
+    func removePreviousViewControllers()
+    {
+     if var array = self.navigationController?.viewControllers
+     {
+  //  var array : [UIViewController] = self.navigationController!.viewControllers
+               let index = array.firstIndex(of: self)!
+               
+               for i in (0...index).reversed() where i < array.count {
+                   array.remove(at: i)
+               }
+               self.navigationController?.viewControllers = array
+        }
+    }
+    
+    
+    
     @objc fileprivate func backButton() {
         
         self.navigationController?.popViewController(animated: true)
@@ -84,7 +100,7 @@ extension Date {
     func startOfMonth() -> Date {
         
         var calender = Calendar.current
-        calender.timeZone = TimeZone(identifier: "UTC")!
+        calender.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
         return calender.date(from: calender.dateComponents([.year, .month], from: calender.startOfDay(for: self)))!
     }
     
@@ -100,7 +116,7 @@ extension Date {
     func startOfWeek() -> Date {
         
         var calender = Calendar.current
-        calender.timeZone = TimeZone(identifier: "UTC")!
+        calender.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
         let sunday = calender.date(from: calender.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!
         
         return calender.date(byAdding: .day, value: 1, to: sunday)!
@@ -113,7 +129,7 @@ extension Date {
         
         let format = DateFormatter()
         format.dateFormat = "d MMM yyyy"
-        format.timeZone = TimeZone(identifier: "UTC")!
+        format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
         
         while date <= toDate {
             dates.append(date)
@@ -134,7 +150,7 @@ extension Date {
             format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
             format.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let formattedDate = format.string(from: date)
-            format.timeZone = TimeZone(identifier: "UTC")!
+            format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
             let todyEndDte = format.date(from: formattedDate)!
             
             let finalEndDate = endTimeStamp > Date().timeIntervalSince1970 ? todyEndDte : item.endOfDay
@@ -157,7 +173,7 @@ extension Date {
         format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
         format.dateFormat = "E, d MMM yyyy"
         let formattedDate = format.string(from: dateInWeek)
-        format.timeZone = TimeZone(identifier: "UTC")!
+        format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
         let todyEndDte = format.date(from: formattedDate)!
         
         let calendar = Calendar.current
@@ -180,7 +196,7 @@ extension Date {
             format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
             format.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let formattedDate = format.string(from: date)
-            format.timeZone = TimeZone(identifier: "UTC")!
+            format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
             let todyEndDte = format.date(from: formattedDate)!
             
             let finalEndDate = endTimeStamp > Date().timeIntervalSince1970 ? todyEndDte : item.endOfDay
@@ -199,14 +215,14 @@ extension Date {
     
     var startOfDay: Date {
         var calendar = Calendar.current
-        calendar.timeZone = TimeZone(identifier: "UTC")!
+        calendar.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
         return calendar.startOfDay(for: self)
     }
     
     var endOfDay: Date {
         
         var calendar = Calendar.current
-        calendar.timeZone = TimeZone(identifier: "UTC")!
+        calendar.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
         var components = DateComponents()
         components.day = 1
         components.second = -1

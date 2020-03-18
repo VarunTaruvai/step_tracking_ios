@@ -28,8 +28,6 @@ class DaysWiseVC: UIViewController {
         daysDetailsTblView.dataSource = self
         self.commonNavigationBar(title: whichTitle, controller: Constant.Controllers.DaysDetails)
         daysDetailsTblView.separatorStyle = .none
-        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data", attributes: attributes)
         refreshControl.tintColor = .white
         refreshControl.addTarget(self, action: #selector(pushToDaysStats), for:.valueChanged)
         daysDetailsTblView.addSubview(refreshControl)
@@ -100,6 +98,7 @@ extension DaysWiseVC {
             
             self.days = Date.getDaysOfWeek()
             self.daysDetailsTblView.reloadData()
+            self.getWeeklySteps()
         }
             
         else {
@@ -109,15 +108,45 @@ extension DaysWiseVC {
             format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
             format.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let formattedDate = format.string(from: dateInWeek)
-            format.timeZone = TimeZone(identifier: "UTC")!
+            format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
             let todyDte = format.date(from: formattedDate)!
             
             self.days = Date.dates(from: Date().startOfMonth(), to: todyDte)
             self.daysDetailsTblView.reloadData()
+            self.getMonthlySteps()
         }
         
         refreshControl.endRefreshing()
         
+    }
+    
+    
+    func getWeeklySteps()
+    {
+        //MARK:- This Week
+        self.healthKit.getTotalSteps(startDte: Date().startOfWeek(), endDate: Date().endOfDay) { (steps) in
+                     
+                    // self.weeklyStepsCount = Int(steps)
+                     DispatchQueue.main.async {
+                        self.stepsCountLbl.text = String(describing: Int(steps))
+                        
+            }
+                 }
+                 
+               
+    }
+    
+    func getMonthlySteps()
+    {
+        //MARK:- This Month
+                       self.healthKit.getTotalSteps(startDte: Date().startOfMonth(), endDate: Date().endOfDay) { (steps) in
+                           
+                         
+                           DispatchQueue.main.async {
+                               self.stepsCountLbl.text = String(describing: Int(steps))
+                           }
+                           
+                       }
     }
     
 }

@@ -28,8 +28,6 @@ class HomeTotalStepsVC: UIViewController,UIGestureRecognizerDelegate {
         homeStepsTblView.separatorStyle = .none
         self.navigationItem.hidesBackButton = true
         //refresh control
-        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data", attributes: attributes)
         refreshControl.tintColor = .white
         refreshControl.addTarget(self, action: #selector(totlStepsData), for: .valueChanged)
         homeStepsTblView.addSubview(refreshControl)
@@ -141,16 +139,16 @@ extension HomeTotalStepsVC: UITableViewDelegate, UITableViewDataSource {
             
             
             //Today's End Date(Current Date And Time)
-            let date = Date()
-            let format = DateFormatter()
-            format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
-            format.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            let formattedDate = format.string(from: date)
-            format.timeZone = TimeZone(identifier: "UTC")!
-            let todyEndDte = format.date(from: formattedDate)!
+//            let date = Date()
+//            let format = DateFormatter()
+//            format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+//            format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//            let formattedDate = format.string(from: date)
+//            format.timeZone = TimeZone(identifier: "UTC")!
+//            let todyEndDte = format.date(from: formattedDate)!
             
             
-            let modal = DayWiseModal(shwngDate : "Today", strtDate : Date().startOfDay, endDate : todyEndDte, strtTimeStamp : Date().startOfDay.timeIntervalSince1970, endTimeStamp : Date().timeIntervalSince1970, step : todyStepsCount)
+            let modal = DayWiseModal(shwngDate : "Today", strtDate : Date().startOfDay, endDate : Date().endOfDay, strtTimeStamp : Date().startOfDay.timeIntervalSince1970, endTimeStamp : Date().timeIntervalSince1970, step : todyStepsCount)
             
             vc.dayModal = modal
             self.navigationController?.pushViewController(vc, animated: true)
@@ -167,19 +165,19 @@ extension HomeTotalStepsVC: UITableViewDelegate, UITableViewDataSource {
             format1.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
             format1.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let formattedDate1 = format1.string(from: date1)
-            format1.timeZone = TimeZone(identifier: "UTC")!
+            format1.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
             let last24Strt = format1.date(from: formattedDate1)!
             
             //Last 24 End Date(Current Date And Time)
-            let date = Date()
-            let format = DateFormatter()
-            format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
-            format.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            let formattedDate = format.string(from: date)
-            format.timeZone = TimeZone(identifier: "UTC")!
-            let todyEndDte = format.date(from: formattedDate)!
+//            let date = Date()
+//            let format = DateFormatter()
+//            format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+//            format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//            let formattedDate = format.string(from: date)
+//            format.timeZone = TimeZone(identifier: "UTC")!
+//            let todyEndDte = format.date(from: formattedDate)!
             
-            let modal = DayWiseModal(shwngDate : "Last 24 Hours", strtDate : last24Strt, endDate : todyEndDte, strtTimeStamp : Date().startOfDay.timeIntervalSince1970, endTimeStamp : Date().timeIntervalSince1970, step : lst24StepsCount)
+            let modal = DayWiseModal(shwngDate : "Last 24 Hours", strtDate : last24Strt, endDate : Date().endOfDay, strtTimeStamp : Date().startOfDay.timeIntervalSince1970, endTimeStamp : Date().timeIntervalSince1970, step : lst24StepsCount)
             
             vc.dayModal = modal
             self.navigationController?.pushViewController(vc, animated: true)
@@ -246,7 +244,7 @@ extension HomeTotalStepsVC {
             format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
             format.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let formattedDate = format.string(from: date)
-            format.timeZone = TimeZone(identifier: "UTC")!
+            format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
             let todyEndDte = format.date(from: formattedDate)!
             
             //MARK:- Today
@@ -275,7 +273,7 @@ extension HomeTotalStepsVC {
             format1.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
             format1.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let formattedDate1 = format1.string(from: date1)
-            format1.timeZone = TimeZone(identifier: "UTC")!
+            format1.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
             let last24Strt = format1.date(from: formattedDate1)!
             
             self.healthKit.getTotalSteps(startDte: last24Strt, endDate: todyEndDte) { (steps) in
