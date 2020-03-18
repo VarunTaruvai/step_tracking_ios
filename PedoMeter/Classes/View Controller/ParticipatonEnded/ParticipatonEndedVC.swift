@@ -17,4 +17,7 @@ class ParticipatonEndedVC: UIViewController {
         self.commonNavigationBar(title: "", controller: Constant.Controllers.PartionEnded)
         // Do any additional setup after loading the view.
     }
+    
+    //            self.removePreviousViewControllers()
+
 }

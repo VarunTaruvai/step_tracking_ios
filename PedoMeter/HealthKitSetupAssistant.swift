@@ -219,7 +219,7 @@ class HealthKitSetupAssistant {
         var interval = DateComponents()
         interval.hour = 1
         var calendar = Calendar.current
-        calendar.timeZone = TimeZone(identifier: "UTC")!
+//        calendar.timeZone = TimeZone(identifier: "UTC")!
         
         let settingHur =  calendar.component(.hour, from: startDte)
         let anchorDate = calendar.date(bySettingHour: settingHur, minute: 0, second: 0, of: startDte)
@@ -246,7 +246,7 @@ class HealthKitSetupAssistant {
                                             dteFrmt.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
                                             dteFrmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
                                             let curntDte = dteFrmt.string(from: date)
-                                            dteFrmt.timeZone = TimeZone(identifier: "UTC")!
+                                            dteFrmt.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
                                             let newCurntDte = dteFrmt.date(from: curntDte)!
                                             
                                             // Strt And End Date
@@ -258,7 +258,7 @@ class HealthKitSetupAssistant {
                                             //    format1.pmSymbol = "pm"
                                             format.amSymbol = "am"
                                             format.pmSymbol = "pm"
-                                            format.timeZone = TimeZone(identifier: "UTC")!
+                                            format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
                                             let currenthour = format.string(from: result.startDate)
                                             let nexthur = format.string(from: result.endDate)
                                             

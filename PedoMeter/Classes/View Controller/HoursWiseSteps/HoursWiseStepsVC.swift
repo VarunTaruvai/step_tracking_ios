@@ -27,8 +27,6 @@ class HoursWiseStepsVC: UIViewController {
         
         hoursWiseTblView.delegate = self
         hoursWiseTblView.dataSource = self
-        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data", attributes: attributes)
         refreshControl.tintColor = .white
         refreshControl.addTarget(self, action: #selector(pushToHourlyStats), for: .valueChanged)
         hoursWiseTblView.addSubview(refreshControl)
@@ -78,6 +76,8 @@ extension HoursWiseStepsVC {
     @objc func pushToHourlyStats () {
         
         self.whichTitle = dayModal!.showingDate
+        
+        
         
         self.healthKit.getTotalSteps(startDte: dayModal!.startDate, endDate: dayModal!.endDate) { (steps) in
             
