@@ -199,7 +199,7 @@ extension Date {
     
     var startOfDay: Date {
         var calendar = Calendar.current
-       // calendar.timeZone = TimeZone(identifier: "UTC")!
+        calendar.timeZone = TimeZone(identifier: "UTC")!
         return calendar.startOfDay(for: self)
     }
     

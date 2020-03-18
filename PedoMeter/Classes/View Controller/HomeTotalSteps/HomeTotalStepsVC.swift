@@ -17,6 +17,7 @@ class HomeTotalStepsVC: UIViewController,UIGestureRecognizerDelegate {
     var lst24StepsCount = Int()
     var weeklyStepsCount = Int()
     var mnthlyStepsCount = Int()
+    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,143 +27,49 @@ class HomeTotalStepsVC: UIViewController,UIGestureRecognizerDelegate {
         self.homeStepsTblView.estimatedRowHeight = 85
         homeStepsTblView.separatorStyle = .none
         self.navigationItem.hidesBackButton = true
+        //refresh control
+        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data", attributes: attributes)
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(self, action: #selector(totlStepsData), for: .valueChanged)
+        homeStepsTblView.addSubview(refreshControl)
         self.commonNavigationBar(title: "", controller: Constant.Controllers.Home)
-        
-        healthKit.authorizeHealthKit { (authorized, error) in
-            
-            guard authorized else {
-                
-            //    self.healthKit.authorizeHealthKit(authorized, error)
-                
-                let baseMessage = "HealthKit Authorization Failed"
-                if let error = error {
-                    print("\(baseMessage). Reason: \(error.localizedDescription)")
-                }
-                else {
-                    print(baseMessage)
-                }
-
-                return
-            }
-            
-            
-            let date = Date()
-            let format = DateFormatter()
-            format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
-            format.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            let formattedDate = format.string(from: date)
-            format.timeZone = TimeZone(identifier: "UTC")!
-            let todyEndDte = format.date(from: formattedDate)!
-            
-            //MARK:- This Month
-            self.healthKit.getTotalSteps(startDte: Date().startOfMonth(), endDate: todyEndDte) { (steps) in
-                
-                  if steps == 0.0 && self.shownWarning == false {
-                                    self.shownWarning = true
-                                    DispatchQueue.main.async {
-                                        self.notAllowAlert()
-                                    }
-                
-                                }
-                  else {
-                self.mnthlyStepsCount = Int(steps)
-                DispatchQueue.main.async {
-                    self.homeStepsTblView.reloadData()
-                    }
-                }
-                
-            }
-            
-            //MARK:- Today
-            var calendar = Calendar.current
-            calendar.timeZone = TimeZone(identifier: "UTC")!
-            let todyStrtDate = calendar.startOfDay(for: Date())
-            
-            
-            self.healthKit.getTotalSteps(startDte: todyStrtDate, endDate: todyEndDte) { (steps) in
-                
-//                if steps == 0.0 && self.shownWarning == false {
-//                    self.shownWarning = true
-//                    DispatchQueue.main.async {
-//                        self.notAllowAlert()
-//                    }
-//
-//                }
-//
-//                else {
-                    self.todyStepsCount = Int(steps)
-                    DispatchQueue.main.async {
-                        self.homeStepsTblView.reloadData()
-         //           }
-                  
-                }
-            }
-            
-            //MARK:- Last 24 Hours
-            
-            let date1 = Date().addingTimeInterval(-3600 * 24)
-            let format1 = DateFormatter()
-            format1.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
-            format1.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            let formattedDate1 = format1.string(from: date1)
-            format1.timeZone = TimeZone(identifier: "UTC")!
-            let last24Strt = format1.date(from: formattedDate1)!
-            
-            self.healthKit.getTotalSteps(startDte: last24Strt, endDate: todyEndDte) { (steps) in
-                
-                self.lst24StepsCount = Int(steps)
-                DispatchQueue.main.async {
-                    self.homeStepsTblView.reloadData()
-                }
-                
-            }
-            
-            //MARK:- This Week
-            self.healthKit.getTotalSteps(startDte: Date().startOfWeek(), endDate: todyEndDte) { (steps) in
-                
-                self.weeklyStepsCount = Int(steps)
-                DispatchQueue.main.async {
-                    self.homeStepsTblView.reloadData()
-                }
-            }
-            
-            
-            
-            print("HealthKit Successfully Authorized.")
-        }
-        
         NotificationCenter.default.addObserver(self, selector: #selector(pushHome), name: NSNotification.Name(rawValue: "pushToNxt"), object: nil)
         // Do any additional setup after loading the view.
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        self.totlStepsData()
+    }
+    
+    
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool
+    {
+        
+        if (gestureRecognizer == self.navigationController?.interactivePopGestureRecognizer)
         {
-            
-            if (gestureRecognizer == self.navigationController?.interactivePopGestureRecognizer)
+            if (self.navigationController?.viewControllers.count ?? 0 > 1)
             {
-                if (self.navigationController?.viewControllers.count ?? 0 > 1)
-                {
-                    return true
-                }
-                
-                return false
+                return true
             }
             
-            return true
+            return false
         }
+        
+        return true
+    }
     
     
     override func viewDidAppear(_ animated: Bool)
-       {
-           super.viewDidAppear(true);
-           print("view did appear");
-           self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-           self.navigationController?.interactivePopGestureRecognizer!.delegate = nil
-           self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-           self.navigationController?.interactivePopGestureRecognizer!.delegate = self
-           
-       }
+    {
+        super.viewDidAppear(true);
+        print("view did appear");
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        self.navigationController?.interactivePopGestureRecognizer!.delegate = nil
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        self.navigationController?.interactivePopGestureRecognizer!.delegate = self
+        
+    }
     
     @IBAction func endPartcptonTappd(_ sender: Any) {
         
@@ -231,12 +138,7 @@ extension HomeTotalStepsVC: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 {
             
             let vc = Constant.Controllers.HoursWiseSteps.get() as! HoursWiseStepsVC
-     //       vc.totlStepsCount = self.todyStepsCount
             
-            //Today's Start Date
-            var calendar = Calendar.current
-            calendar.timeZone = TimeZone(identifier: "UTC")!
-            let todyStrtDate = calendar.startOfDay(for: Date())
             
             //Today's End Date(Current Date And Time)
             let date = Date()
@@ -248,7 +150,7 @@ extension HomeTotalStepsVC: UITableViewDelegate, UITableViewDataSource {
             let todyEndDte = format.date(from: formattedDate)!
             
             
-            let modal = DayWiseModal(shwngDate : "Today", strtDate : todyStrtDate, endDate : todyEndDte, strtTimeStamp : Date().startOfDay.timeIntervalSince1970, endTimeStamp : Date().timeIntervalSince1970, step : todyStepsCount)
+            let modal = DayWiseModal(shwngDate : "Today", strtDate : Date().startOfDay, endDate : todyEndDte, strtTimeStamp : Date().startOfDay.timeIntervalSince1970, endTimeStamp : Date().timeIntervalSince1970, step : todyStepsCount)
             
             vc.dayModal = modal
             self.navigationController?.pushViewController(vc, animated: true)
@@ -258,9 +160,6 @@ extension HomeTotalStepsVC: UITableViewDelegate, UITableViewDataSource {
         else if indexPath.row == 1 {
             
             let vc = Constant.Controllers.HoursWiseSteps.get() as! HoursWiseStepsVC
-//            vc.whichRow = indexPath.row
-//            vc.whichTitle = Constant.homeFrstLblArr[indexPath.row]
-//            vc.totlStepsCount = self.lst24StepsCount
             
             //Last 24 hours Start Date
             let date1 = Date().addingTimeInterval(-3600 * 24)
@@ -321,6 +220,105 @@ extension HomeTotalStepsVC {
             }            }))
         alert.view.tintColor = .black
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    @objc func totlStepsData() {
+        
+        healthKit.authorizeHealthKit { (authorized, error) in
+            
+            guard authorized else {
+                
+                let baseMessage = "HealthKit Authorization Failed"
+                if let error = error {
+                    print("\(baseMessage). Reason: \(error.localizedDescription)")
+                }
+                else {
+                    print(baseMessage)
+                }
+                
+                return
+            }
+            
+            //Current Date And Time
+            let date = Date()
+            let format = DateFormatter()
+            format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+            format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let formattedDate = format.string(from: date)
+            format.timeZone = TimeZone(identifier: "UTC")!
+            let todyEndDte = format.date(from: formattedDate)!
+            
+            //MARK:- Today
+            self.healthKit.getTotalSteps(startDte: Date().startOfDay, endDate: todyEndDte) { (steps) in
+                
+                if steps == 0.0 && self.shownWarning == false {
+                    self.shownWarning = true
+                    DispatchQueue.main.async {
+                        self.notAllowAlert()
+                    }
+                    
+                }
+                    
+                else {
+                    self.todyStepsCount = Int(steps)
+                    DispatchQueue.main.async {
+                        self.homeStepsTblView.reloadData()
+                    }
+                    
+                }
+            }
+            
+            //MARK:- Last 24 Hours
+            let date1 = Date().addingTimeInterval(-3600 * 24)
+            let format1 = DateFormatter()
+            format1.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+            format1.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let formattedDate1 = format1.string(from: date1)
+            format1.timeZone = TimeZone(identifier: "UTC")!
+            let last24Strt = format1.date(from: formattedDate1)!
+            
+            self.healthKit.getTotalSteps(startDte: last24Strt, endDate: todyEndDte) { (steps) in
+                
+                self.lst24StepsCount = Int(steps)
+                DispatchQueue.main.async {
+                    self.homeStepsTblView.reloadData()
+                }
+                
+            }
+            
+            //MARK:- This Week
+            self.healthKit.getTotalSteps(startDte: Date().startOfWeek(), endDate: todyEndDte) { (steps) in
+                
+                self.weeklyStepsCount = Int(steps)
+                DispatchQueue.main.async {
+                    self.homeStepsTblView.reloadData()
+                }
+            }
+            
+            //MARK:- This Month
+            self.healthKit.getTotalSteps(startDte: Date().startOfMonth(), endDate: todyEndDte) { (steps) in
+                
+                //                if steps == 0.0 && self.shownWarning == false {
+                //                    self.shownWarning = true
+                //                    DispatchQueue.main.async {
+                //                        self.notAllowAlert()
+                //                    }
+                //
+                //                }
+                //                else {
+                self.mnthlyStepsCount = Int(steps)
+                DispatchQueue.main.async {
+                    self.homeStepsTblView.reloadData()
+                    //           }
+                }
+                
+            }
+            
+            print("HealthKit Successfully Authorized.")
+        }
+        refreshControl.endRefreshing()
+        
     }
     
 }

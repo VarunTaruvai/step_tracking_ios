@@ -14,26 +14,36 @@ class DaysWiseVC: UIViewController {
     var whichRow = 0
     var whichTitle = ""
     var days = [DayWiseModal]()
-//    var dataFrmModal = [hoursStepsModal]()
-    var weekDys = [String]()
+   // var weekDys = [String]()
     var totlStepsCount = 0
+    var refreshControl = UIRefreshControl()
     
-    @IBOutlet weak var stepsDetailsTblView: UITableView!
+    @IBOutlet weak var daysDetailsTblView: UITableView!
     @IBOutlet weak var stepsCountLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        stepsDetailsTblView.delegate = self
-        stepsDetailsTblView.dataSource = self
+        daysDetailsTblView.delegate = self
+        daysDetailsTblView.dataSource = self
         self.commonNavigationBar(title: whichTitle, controller: Constant.Controllers.DaysDetails)
-        stepsDetailsTblView.separatorStyle = .none
-        self.pushToDaysStats()
+        daysDetailsTblView.separatorStyle = .none
+        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data", attributes: attributes)
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(self, action: #selector(pushToDaysStats), for:.valueChanged)
+        daysDetailsTblView.addSubview(refreshControl)
         self.stepsCountLbl.text = String(describing: totlStepsCount)
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.pushToDaysStats()
+    }
+    
 }
+
 
 extension DaysWiseVC: UITableViewDelegate, UITableViewDataSource {
     
@@ -84,16 +94,16 @@ extension DaysWiseVC: UITableViewDelegate, UITableViewDataSource {
 
 extension DaysWiseVC {
     
-    func pushToDaysStats () {
+    @objc func pushToDaysStats () {
         
         if whichRow == 2 {
-
+            
             self.days = Date.getDaysOfWeek()
-            self.stepsDetailsTblView.reloadData()
+            self.daysDetailsTblView.reloadData()
         }
             
         else {
-
+            
             let dateInWeek = Date()
             let format = DateFormatter()
             format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
@@ -101,10 +111,12 @@ extension DaysWiseVC {
             let formattedDate = format.string(from: dateInWeek)
             format.timeZone = TimeZone(identifier: "UTC")!
             let todyDte = format.date(from: formattedDate)!
-
+            
             self.days = Date.dates(from: Date().startOfMonth(), to: todyDte)
-            self.stepsDetailsTblView.reloadData()
+            self.daysDetailsTblView.reloadData()
         }
+        
+        refreshControl.endRefreshing()
         
     }
     

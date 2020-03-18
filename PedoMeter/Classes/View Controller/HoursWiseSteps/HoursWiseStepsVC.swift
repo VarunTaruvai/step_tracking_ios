@@ -18,21 +18,30 @@ class HoursWiseStepsVC: UIViewController {
     var dataFrmModal = [hoursStepsModal]()
     var dayModal : DayWiseModal?
     var totlStepsCountOfDte = Int()
-    var whichRow = 0
-    var totlStepsCount = 0
+    //    var whichRow = 0
+    //    var totlStepsCount = 0
+    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         hoursWiseTblView.delegate = self
         hoursWiseTblView.dataSource = self
-        self.pushToHourlyStats()
+        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data", attributes: attributes)
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(self, action: #selector(pushToHourlyStats), for: .valueChanged)
+        hoursWiseTblView.addSubview(refreshControl)
         self.totalStepsCountLbl.text = String(describing: dayModal!.steps)
-        //  self.totalStepsCountLbl.text = String(describing: totlStepsCountOfDte)
         self.commonNavigationBar(title: dayModal!.showingDate, controller: Constant.Controllers.DaysDetails)
         hoursWiseTblView.separatorStyle = .none
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.pushToHourlyStats()
     }
     
 }
@@ -66,8 +75,7 @@ extension HoursWiseStepsVC: UITableViewDelegate, UITableViewDataSource {
 
 extension HoursWiseStepsVC {
     
-    
-    func pushToHourlyStats () {
+    @objc func pushToHourlyStats () {
         
         self.whichTitle = dayModal!.showingDate
         
@@ -75,12 +83,9 @@ extension HoursWiseStepsVC {
             
             self.totlStepsCountOfDte = Int(steps)
             DispatchQueue.main.async {
-                self.totalStepsCountLbl.text = String(describing: self.totlStepsCountOfDte)
-
-           //     self.hoursWiseTblView.reloadData()
                 
+                self.totalStepsCountLbl.text = String(describing: self.totlStepsCountOfDte)
             }
-            
             
         }
         
@@ -94,6 +99,8 @@ extension HoursWiseStepsVC {
             }
             
         }
+        
+        refreshControl.endRefreshing()
     }
     
 }
