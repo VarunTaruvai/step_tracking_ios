@@ -77,8 +77,6 @@ extension HoursWiseStepsVC {
         
         self.whichTitle = dayModal!.showingDate
         
-        
-        
         self.healthKit.getTotalSteps(startDte: dayModal!.startDate, endDate: dayModal!.endDate) { (steps) in
             
             self.totlStepsCountOfDte = Int(steps)

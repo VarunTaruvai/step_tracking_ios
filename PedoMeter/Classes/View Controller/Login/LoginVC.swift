@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import SafariServices
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, SFSafariViewControllerDelegate {
+    
     @IBOutlet weak var usernmeTxtField: UITextField!
-    @IBOutlet weak var termsNdCondtonBtn: UIButton!
+    @IBOutlet weak var tickBoxBtn: UIButton!
     @IBOutlet weak var loginNxtBtn: UIButton!
     
     override func viewDidLoad() {
@@ -23,17 +25,17 @@ class LoginVC: UIViewController {
     
     @IBAction func loginNxtTppd(_ sender: Any) {
         
-        if usernmeTxtField.text?.trimWhiteSpaces() == "" && termsNdCondtonBtn.isSelected == false {
+        if usernmeTxtField.text?.trimWhiteSpaces() == "" && tickBoxBtn.isSelected == false {
             
             AppUtils.showToast(message: ToastMsg.alLginFldsMandte)
         }
-        
+            
         else if usernmeTxtField.text?.trimWhiteSpaces() == "" {
             
             AppUtils.showToast(message: ToastMsg.blnkUsrNme)
         }
             
-        else if termsNdCondtonBtn.isSelected == false {
+        else if tickBoxBtn.isSelected == false {
             
             AppUtils.showToast(message: ToastMsg.blnkTNdC)
         }
@@ -43,14 +45,27 @@ class LoginVC: UIViewController {
             Utils.saveTheContent(value: usernmeTxtField.text?.trimWhiteSpaces() as Any, key: Constant.usrNme)
             let vc = Constant.Controllers.Home.get() as! HomeTotalStepsVC
             self.navigationController?.pushViewController(vc, animated: true)
-            
             self.removePreviousViewControllers()
             
         }
     }
     
+    @IBAction func tickBoxBtnTppd(_ sender: Any) {
+        
+        tickBoxBtn.isSelected = !tickBoxBtn.isSelected
+        
+    }
+    
     @IBAction func termsNdCondtonTappd(_ sender: Any) {
         
-        termsNdCondtonBtn.isSelected = !termsNdCondtonBtn.isSelected
+        let url = URL(string: "http://www.google.com")!
+        let controller = SFSafariViewController(url: url)
+        self.present(controller, animated: true, completion: nil)
+        controller.delegate = self
+        
+        func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+            
+            controller.dismiss(animated: true, completion: nil)
+        }
     }
 }
