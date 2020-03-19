@@ -18,8 +18,6 @@ class HoursWiseStepsVC: UIViewController {
     var dataFrmModal = [hoursStepsModal]()
     var dayModal : DayWiseModal?
     var totlStepsCountOfDte = Int()
-    //    var whichRow = 0
-    //    var totlStepsCount = 0
     var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {

@@ -120,7 +120,6 @@ extension HomeTotalStepsVC: UITableViewDelegate, UITableViewDataSource {
             
             stepsLbl.text = "\(String(describing: mnthlyStepsCount)) Steps"
         }
-        //        let cellView = cell.viewWithTag(5)!
         cell.selectionStyle = .none
         
         return cell
@@ -136,18 +135,6 @@ extension HomeTotalStepsVC: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 {
             
             let vc = Constant.Controllers.HoursWiseSteps.get() as! HoursWiseStepsVC
-            
-            
-            //Today's End Date(Current Date And Time)
-//            let date = Date()
-//            let format = DateFormatter()
-//            format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
-//            format.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//            let formattedDate = format.string(from: date)
-//            format.timeZone = TimeZone(identifier: "UTC")!
-//            let todyEndDte = format.date(from: formattedDate)!
-            
-            
             let modal = DayWiseModal(shwngDate : "Today", strtDate : Date().startOfDay, endDate : Date().endOfDay, strtTimeStamp : Date().startOfDay.timeIntervalSince1970, endTimeStamp : Date().timeIntervalSince1970, step : todyStepsCount)
             
             vc.dayModal = modal
@@ -167,15 +154,6 @@ extension HomeTotalStepsVC: UITableViewDelegate, UITableViewDataSource {
             let formattedDate1 = format1.string(from: date1)
             format1.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
             let last24Strt = format1.date(from: formattedDate1)!
-            
-            //Last 24 End Date(Current Date And Time)
-//            let date = Date()
-//            let format = DateFormatter()
-//            format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
-//            format.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//            let formattedDate = format.string(from: date)
-//            format.timeZone = TimeZone(identifier: "UTC")!
-//            let todyEndDte = format.date(from: formattedDate)!
             
             let modal = DayWiseModal(shwngDate : "Last 24 Hours", strtDate : last24Strt, endDate : Date().endOfDay, strtTimeStamp : Date().startOfDay.timeIntervalSince1970, endTimeStamp : Date().timeIntervalSince1970, step : lst24StepsCount)
             

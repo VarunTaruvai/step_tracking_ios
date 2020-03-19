@@ -125,28 +125,26 @@ extension DaysWiseVC {
     {
         //MARK:- This Week
         self.healthKit.getTotalSteps(startDte: Date().startOfWeek(), endDate: Date().endOfDay) { (steps) in
-                     
-                    // self.weeklyStepsCount = Int(steps)
-                     DispatchQueue.main.async {
-                        self.stepsCountLbl.text = String(describing: Int(steps))
-                        
+            
+            // self.weeklyStepsCount = Int(steps)
+            DispatchQueue.main.async {
+                self.stepsCountLbl.text = String(describing: Int(steps))
+                
             }
-                 }
-                 
-               
+        }
+        
     }
     
     func getMonthlySteps()
     {
         //MARK:- This Month
-                       self.healthKit.getTotalSteps(startDte: Date().startOfMonth(), endDate: Date().endOfDay) { (steps) in
-                           
-                         
-                           DispatchQueue.main.async {
-                               self.stepsCountLbl.text = String(describing: Int(steps))
-                           }
-                           
-                       }
+        self.healthKit.getTotalSteps(startDte: Date().startOfMonth(), endDate: Date().endOfDay) { (steps) in
+            
+            DispatchQueue.main.async {
+                self.stepsCountLbl.text = String(describing: Int(steps))
+            }
+            
+        }
     }
     
 }
