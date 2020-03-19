@@ -22,6 +22,6 @@ class ParticipatonEndedVC: UIViewController {
         
         let vc = Constant.Controllers.StudyCode.get() as! StudyCodeVC
         self.navigationController?.pushViewController(vc, animated: true)
-        
+        self.removePreviousViewControllers()
     }
 }

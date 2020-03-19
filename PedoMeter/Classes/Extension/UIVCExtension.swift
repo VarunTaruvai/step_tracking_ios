@@ -39,25 +39,24 @@ extension UIViewController: UITextFieldDelegate {
         }
     }
     
-    func removePreviousViewControllers()
-    {
-     if var array = self.navigationController?.viewControllers
-     {
-  //  var array : [UIViewController] = self.navigationController!.viewControllers
-               let index = array.firstIndex(of: self)!
-               
-               for i in (0...index).reversed() where i < array.count {
-                   array.remove(at: i)
-               }
-               self.navigationController?.viewControllers = array
-        }
-    }
-    
-    
-    
     @objc fileprivate func backButton() {
         
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    //remove previous view controllers
+    func removePreviousViewControllers()
+    {
+        if var array = self.navigationController?.viewControllers
+        {
+            
+            let index = array.firstIndex(of: self)!
+            
+            for i in (0...index).reversed() where i < array.count {
+                array.remove(at: i)
+            }
+            self.navigationController?.viewControllers = array
+        }
     }
     
     //MARK:- Tap Gesture (for dismissing modal VC)
@@ -190,7 +189,7 @@ extension Date {
             
             let finalEnd = endTimeStamp > Date().timeIntervalSince1970 ? Date().timeIntervalSince1970 : endTimeStamp
             
-            //vurrent date and time
+            //current date and time
             let date = Date()
             let format = DateFormatter()
             format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
@@ -212,13 +211,14 @@ extension Date {
         return array
     }
     
-    
+    // Start of day
     var startOfDay: Date {
         var calendar = Calendar.current
         calendar.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
         return calendar.startOfDay(for: self)
     }
     
+    // End of day
     var endOfDay: Date {
         
         var calendar = Calendar.current
