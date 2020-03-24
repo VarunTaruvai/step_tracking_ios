@@ -31,8 +31,8 @@ class HomeTotalStepsVC: UIViewController,UIGestureRecognizerDelegate {
         refreshControl.tintColor = .white
         refreshControl.addTarget(self, action: #selector(totlStepsData), for: .valueChanged)
         homeStepsTblView.addSubview(refreshControl)
-        self.commonNavigationBar(title: "", controller: Constant.Controllers.Home)
-        NotificationCenter.default.addObserver(self, selector: #selector(pushHome), name: NSNotification.Name(rawValue: "pushToNxt"), object: nil)
+        self.commonNavigationBar(title: "Hi, \(self.userName)", controller: Constant.Controllers.Home)
+        NotificationCenter.default.addObserver(self, selector: #selector(pushHome), name: NSNotification.Name(rawValue: Constant.NotificationIdentifier.nextNoti), object: nil)
         // Do any additional setup after loading the view.
     }
     
@@ -77,10 +77,35 @@ class HomeTotalStepsVC: UIViewController,UIGestureRecognizerDelegate {
         
     }
     
+    // MARK: - ServerApiCall
+    func endParticiPationApi()
+    {
+        Utils.startLoading(self.view)
+        let param = ["userName"  : self.userName]
+        Service.sharedInstance.postRequest(Url: Constant.APIs.endStudyApi , modalName: EndStudyModel.self, parameter: param as [String : Any]) { (result, error) in
+            Utils.stopLoading()
+            guard let json = result else {return}
+            
+            if json.Success! == "1"
+            {
+                Utils.removeTheContent(key: Constant.usrNme)
+                Utils.removeTheContent(key: Constant.timeStamp)
+                let vc = Constant.Controllers.PartionEnded.get() as! ParticipatonEndedVC
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else
+            {
+                AppUtils.showToast(message: json.Message!)
+            }
+
+            
+        }
+    }
+    
+    
+    
     @objc func pushHome() {
-        
-        let vc = Constant.Controllers.PartionEnded.get() as! ParticipatonEndedVC
-        self.navigationController?.pushViewController(vc, animated: true)
+        endParticiPationApi()
+       
     }
 }
 
@@ -288,8 +313,29 @@ extension HomeTotalStepsVC {
                     self.homeStepsTblView.reloadData()
                     //           }
                 }
+     
+            }
+            
+            
+            //MARK:- ServerSideWork
+            self.healthKit.getHourlyStepsForServer { (array) in
+                
+                var reqArr = [[String : Any]]()
+                for item in array
+                {
+               reqArr.append(["starttime":item.starttime,"endtime":item.endtime,"userName":item.userName,"steps":item.steps])
+                }
+                
+                print(reqArr)
+                DispatchQueue.main.async {
+                    if reqArr.count > 0
+                    {
+                   self.sendDataToServer(param: reqArr)
+                    }
+                }
                 
             }
+
             
             print("HealthKit Successfully Authorized.")
         }
@@ -297,4 +343,23 @@ extension HomeTotalStepsVC {
         
     }
     
+    
+    
+    func sendDataToServer(param : [[String:Any]])
+    {
+        Service.sharedInstance.postRequestForHome(Url: Constant.APIs.saveUserSteps , modalName: StepSaveModel.self, parameter: param) { (result, error) in
+                   Utils.stopLoading()
+                   guard let json = result else {return}
+                   
+                   if json.Success! == "1"
+                   {
+                      let timeStamp = Date().timeIntervalSince1970
+                     Utils.saveTheString(value: "\(timeStamp)", key: Constant.timeStamp)
+                   }else
+                   {
+                   }
+
+                   
+               }
+    }
 }

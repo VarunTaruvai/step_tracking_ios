@@ -12,8 +12,28 @@ import IQKeyboardManagerSwift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    var isNetworkAvailable:Bool?
+
     var window: UIWindow?
-    
+    var visibleViewController: UIViewController? {
+           var currentVc = UIApplication.shared.keyWindow?.rootViewController
+           while let presentedVc = currentVc?.presentedViewController {
+               if let navVc = (presentedVc as? UINavigationController)?.viewControllers.last {
+                   currentVc = navVc
+               } else if let tabVc = (presentedVc as? UITabBarController)?.selectedViewController {
+                   currentVc = tabVc
+               } else {
+                   currentVc = presentedVc
+               }
+           }
+           if let vc = (currentVc as? UINavigationController)?.viewControllers.last
+           {
+               return vc
+           }
+           
+           
+           return currentVc
+       }
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         IQKeyboardManager.shared.enable = true
@@ -39,5 +59,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return true
     }
+    
+    
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+           print("visible view con in foreground",self.visibleViewController)
+
+       }
+       func applicationWillResignActive(_ application: UIApplication) {
+           print("visible view con",self.visibleViewController)
+       }
+    
 }
 

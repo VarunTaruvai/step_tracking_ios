@@ -82,6 +82,15 @@ extension UIViewController: UITextFieldDelegate {
         view.endEditing(true)
     }
     
+    var userName : String
+    {
+        guard let name = Utils.getTheString(key: Constant.usrNme) else {
+            return ""
+        }
+        return name
+    }
+    
+    
 }
 
 //MARK:- Trimming WhiteSpaces

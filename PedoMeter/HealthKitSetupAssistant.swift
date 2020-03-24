@@ -138,5 +138,78 @@ class HealthKitSetupAssistant {
     }
     
     
+    
+    
+    //MARK:- common Func For getting steps hourly
+    func getHourlyStepsForServer( _ completion: @escaping ([serverStepsModal]) -> Void) {
+        
+        guard let stepCountType = HKObjectType.quantityType(forIdentifier: .stepCount) else {
+            fatalError("*** Unable to get the step count type ***")
+        }
+        
+        var interval = DateComponents()
+        interval.hour = 1
+        let calendar = Calendar.current
+        
+        let dte = Date(timeIntervalSince1970: Double(Utils.getTheString(key: Constant.timeStamp)!)!)
+         let dteFrmt = DateFormatter()
+        dteFrmt.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+        dteFrmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateStr = dteFrmt.string(from: dte)
+         dteFrmt.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+        let startDte = dteFrmt.date(from: dateStr)!
+        
+        let endDate = Date().endOfDay
+        
+        let settingHur =  calendar.component(.hour, from: startDte)
+        let anchorDate = calendar.date(bySettingHour: settingHur, minute: 0, second: 0, of: startDte)
+        
+        let query = HKStatisticsCollectionQuery.init(quantityType: stepCountType,
+                                                     quantitySamplePredicate: nil,
+                                                     options: .cumulativeSum,
+                                                     anchorDate: anchorDate!,
+                                                     intervalComponents: interval)
+        
+        query.initialResultsHandler = {
+            query, results, error in
+            
+            var arr = [serverStepsModal]()
+            
+            results?.enumerateStatistics(from: startDte,
+                                         to: endDate, with: { (result, stop) in
+                                            
+                                            print("Timehai: \(result.startDate), \(result.sumQuantity()?.doubleValue(for: HKUnit.count()) ?? 0), \(result.endDate)")
+                                            
+                                            
+                                            let startTime = result.startDate.timeIntervalSince1970
+                                            let endTime = result.endDate.timeIntervalSince1970
+                                            
+                                            
+ 
+                                            
+                                            if endTime > Date().timeIntervalSince1970 {
+
+                                                print("no")
+                                                return
+
+                                            }
+                                            else {
+                                                
+                                                print("yes")
+                                                arr.append(serverStepsModal(strtTime: startTime, end: endTime, userName: "", step: Int(result.sumQuantity()?.doubleValue(for: HKUnit.count()) ?? 0)))
+                                             
+                                           }
+                                            
+            })
+            
+            completion(arr)
+        }
+        healthStore.execute(query)
+        
+    }
+    
+    
+    
+    
 }
 

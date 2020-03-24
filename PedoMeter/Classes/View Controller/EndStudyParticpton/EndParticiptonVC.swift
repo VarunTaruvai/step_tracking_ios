@@ -27,9 +27,10 @@ class EndParticiptonVC: UIViewController {
         
         self.dismiss(animated: true) {
             
-            let userdefault = UserDefaults.standard
-            userdefault.removeObject(forKey: Constant.usrNme)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "pushToNxt"), object: nil, userInfo: nil)
+            
+          
+
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constant.NotificationIdentifier.nextNoti), object: nil, userInfo: nil)
         }
     }
     @IBAction func noBtnTppd(_ sender: Any) {

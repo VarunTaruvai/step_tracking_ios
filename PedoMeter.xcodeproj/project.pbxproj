@@ -48,6 +48,9 @@
 		C9BCFFA22409270800222130 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BCFFA12409270800222130 /* LoginVC.swift */; };
 		C9CBF406240937A100D043FD /* HomeTotalStepsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CBF405240937A100D043FD /* HomeTotalStepsVC.swift */; };
 		C9CBF40924093EB500D043FD /* DaysWiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CBF40824093EB500D043FD /* DaysWiseVC.swift */; };
+		E3FB5BAB2429DDA300774675 /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FB5BA92429DDA300774675 /* ReachabilityManager.swift */; };
+		E3FB5BAC2429DDA300774675 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FB5BAA2429DDA300774675 /* Service.swift */; };
+		E3FB5BAF2429E43100774675 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FB5BAE2429E43100774675 /* APIModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +100,9 @@
 		C9BCFFA12409270800222130 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		C9CBF405240937A100D043FD /* HomeTotalStepsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTotalStepsVC.swift; sourceTree = "<group>"; };
 		C9CBF40824093EB500D043FD /* DaysWiseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysWiseVC.swift; sourceTree = "<group>"; };
+		E3FB5BA92429DDA300774675 /* ReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
+		E3FB5BAA2429DDA300774675 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		E3FB5BAE2429E43100774675 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +155,7 @@
 		C93FE76B240D03C500BA311A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E3FB5BAD2429E41200774675 /* Models */,
 				C941084F240A3EB700EE79C1 /* Helper */,
 				C9410849240A3B0900EE79C1 /* Extension */,
 				C91ED503240951E400CC9621 /* Constant */,
@@ -249,6 +256,7 @@
 		C9BCFF862408F38F00222130 /* PedoMeter */ = {
 			isa = PBXGroup;
 			children = (
+				E3FB5BA82429DDA300774675 /* Networking */,
 				C93FE76C240D03F400BA311A /* Fonts */,
 				C93FE76B240D03C500BA311A /* Classes */,
 				C9BCFF872408F38F00222130 /* AppDelegate.swift */,
@@ -322,6 +330,24 @@
 				9EAF4737C8DEF0C5DF0A3824 /* Pods-PedoMeter.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E3FB5BA82429DDA300774675 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				E3FB5BA92429DDA300774675 /* ReachabilityManager.swift */,
+				E3FB5BAA2429DDA300774675 /* Service.swift */,
+			);
+			name = Networking;
+			path = Classes/Networking;
+			sourceTree = "<group>";
+		};
+		E3FB5BAD2429E41200774675 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E3FB5BAE2429E43100774675 /* APIModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -460,9 +486,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9BCFF882408F38F00222130 /* AppDelegate.swift in Sources */,
+				E3FB5BAB2429DDA300774675 /* ReachabilityManager.swift in Sources */,
 				C9BCFFA22409270800222130 /* LoginVC.swift in Sources */,
 				C927BDCF241F9AB200794904 /* HoursWiseStepsVC.swift in Sources */,
 				C91ED5022409512D00CC9621 /* ParticipatonEndedVC.swift in Sources */,
+				E3FB5BAC2429DDA300774675 /* Service.swift in Sources */,
 				C931B13A2419258200054263 /* Utils.swift in Sources */,
 				C9CBF40924093EB500D043FD /* DaysWiseVC.swift in Sources */,
 				C941084C240A3B4300EE79C1 /* OutletExtension.swift in Sources */,
@@ -474,6 +502,7 @@
 				C91ED507240953E400CC9621 /* ToastMsg.swift in Sources */,
 				C91ED505240951F700CC9621 /* Constant.swift in Sources */,
 				C9CBF406240937A100D043FD /* HomeTotalStepsVC.swift in Sources */,
+				E3FB5BAF2429E43100774675 /* APIModel.swift in Sources */,
 				C9410851240A3EDE00EE79C1 /* Apputils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

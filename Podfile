@@ -7,7 +7,9 @@ target 'PedoMeter' do
 
   # Pods for PedoMeter
 
+  pod ‘ReachabilitySwift’, ‘~> 3’
   pod 'Toaster'
+  pod 'MBProgressHUD'
   pod 'SwiftLint'
   pod 'IQKeyboardManagerSwift'
 

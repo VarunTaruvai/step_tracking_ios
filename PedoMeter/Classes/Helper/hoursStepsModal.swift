@@ -24,6 +24,23 @@ class hoursStepsModal: NSObject {
 }
 
 
+class serverStepsModal: NSObject {
+    var starttime = Double()
+    var endtime = Double()
+    var userName = String()
+    var steps = Int()
+    
+    init(strtTime : Double, end : Double, userName : String, step : Int) {
+        
+        self.starttime = strtTime
+        self.endtime = end
+        self.userName = Utils.getTheString(key: Constant.usrNme)!
+        self.steps = step
+    
+    }
+}
+
+
 class DayWiseModal: NSObject {
     
     var showingDate = String()

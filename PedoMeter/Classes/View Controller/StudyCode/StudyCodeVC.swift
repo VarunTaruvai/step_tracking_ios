@@ -43,6 +43,35 @@ class StudyCodeVC: UIViewController,UIGestureRecognizerDelegate {
            
            return true
        }
+    
+    
+    // MARK: - ServerApiCall
+    func checkStudyCodeValidation()
+    {
+        Utils.startLoading(self.view)
+        let param = ["studyCode" : self.studyCodeTxtField.text!]
+        Service.sharedInstance.postRequest(Url: Constant.APIs.checkStudyCode , modalName: StudyCodeModel.self, parameter: param as [String : Any]) { (result, error) in
+            Utils.stopLoading()
+            guard let json = result else {return}
+            
+            if json.Success! == "1"
+            {
+                let vc = Constant.Controllers.Login.get() as! LoginVC
+                vc.studyCode = self.studyCodeTxtField.text!
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            }else
+            {
+                AppUtils.showToast(message: json.Message!)
+            }
+
+            
+        }
+    }
+    
+    
+    // MARK: - UIButtonAction
+
     @IBAction func studyCodeNxtTppd(_ sender: Any) {
         
         if studyCodeTxtField.text?.trimWhiteSpaces() == "" {
@@ -51,8 +80,8 @@ class StudyCodeVC: UIViewController,UIGestureRecognizerDelegate {
         }
         
         else {
-            let vc = Constant.Controllers.Login.get() as! LoginVC
-            self.navigationController?.pushViewController(vc, animated: true)
+            checkStudyCodeValidation()
+           
         }
     }
     

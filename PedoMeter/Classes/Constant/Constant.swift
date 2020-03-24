@@ -10,6 +10,9 @@ import UIKit
 
 class Constant: NSObject {
     
+    
+    static let Testing = 1
+
     public  struct Storyboards {
         
         static let main = UIStoryboard(name:"Main",bundle:nil)
@@ -50,6 +53,30 @@ class Constant: NSObject {
     }
     
     
+    
+    struct APIs {
+        //saveUserSteps
+       static let baseURL              = "http://178.128.232.20:8081/"
+       static let checkStudyCode       =  APIs.baseURL + "checkstudycode"
+       static let signUp                =  "https://steptrack.herokuapp.com/signup"
+       static let endStudyApi             = APIs.baseURL +  "endparticipation"
+        static let saveUserSteps             = APIs.baseURL +  "saveUserSteps"
+
+
+       }
+    
+    struct NotificationIdentifier {
+              static let nextNoti       = "pushToNxt"
+          }
+       
+       
+       struct ErrorMsg {
+        static let errorMsg   = "Ooops!! Connection Error."
+        static let offLineMsg = "You seems offline"
+
+          }
+    
+    
     // TimeWiseSteps VC
     static let homeFrstLblArr = ["Today", "Last 24 Hours", "This Week", "This Month"]
     static let homeStepsLblArr = ["80 Steps", "56 Steps", "1092 Steps", "22410 Steps"]
@@ -61,5 +88,7 @@ class Constant: NSObject {
     
     //UserDefaults Data
     static let usrNme = "usrNme"
+    static let timeStamp = "timeStamp"
+
     
 }

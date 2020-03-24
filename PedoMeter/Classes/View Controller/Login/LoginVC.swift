@@ -14,6 +14,7 @@ class LoginVC: UIViewController, SFSafariViewControllerDelegate {
     @IBOutlet weak var usernmeTxtField: UITextField!
     @IBOutlet weak var tickBoxBtn: UIButton!
     @IBOutlet weak var loginNxtBtn: UIButton!
+    var studyCode = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,13 +43,41 @@ class LoginVC: UIViewController, SFSafariViewControllerDelegate {
             
         else {
             
-            Utils.saveTheContent(value: usernmeTxtField.text?.trimWhiteSpaces() as Any, key: Constant.usrNme)
-            let vc = Constant.Controllers.Home.get() as! HomeTotalStepsVC
-            self.navigationController?.pushViewController(vc, animated: true)
-            self.removePreviousViewControllers()
+           userNameApi()
             
         }
     }
+    
+    // MARK: - ServerApiCall
+    func userNameApi()
+    {
+        Utils.startLoading(self.view)
+        let param = ["studyCode" : self.studyCode,
+                     "userName"  : self.usernmeTxtField.text!]
+        Service.sharedInstance.postRequest(Url: Constant.APIs.signUp , modalName: UserNameModel.self, parameter: param as [String : Any]) { (result, error) in
+            Utils.stopLoading()
+            guard let json = result else {return}
+            
+            if json.Success! == 1
+            {
+                Utils.saveTheString(value: self.usernmeTxtField.text!.trimWhiteSpaces(), key: Constant.usrNme)
+                
+                let timeStamp = Date().timeIntervalSince1970
+                
+                 Utils.saveTheString(value: "\(timeStamp)", key: Constant.timeStamp)
+                           let vc = Constant.Controllers.Home.get() as! HomeTotalStepsVC
+                           self.navigationController?.pushViewController(vc, animated: true)
+                           self.removePreviousViewControllers()
+            }else
+            {
+                AppUtils.showToast(message: json.Message!)
+            }
+
+            
+        }
+    }
+    
+    
     
     @IBAction func tickBoxBtnTppd(_ sender: Any) {
         
