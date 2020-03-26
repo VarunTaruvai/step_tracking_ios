@@ -34,7 +34,13 @@ class serverStepsModal: NSObject {
         
         self.starttime = strtTime
         self.endtime = end
-        self.userName = Utils.getTheString(key: Constant.usrNme)!
+        
+        if let name = Utils.getTheString(key: Constant.usrNme)!.fromBase64()
+        {
+            self.userName = name
+        }else{
+            self.userName = ""
+        }
         self.steps = step
     
     }

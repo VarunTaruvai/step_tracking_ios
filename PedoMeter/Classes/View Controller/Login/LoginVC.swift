@@ -53,14 +53,17 @@ class LoginVC: UIViewController, SFSafariViewControllerDelegate {
     {
         Utils.startLoading(self.view)
         let param = ["studyCode" : self.studyCode,
-                     "userName"  : self.usernmeTxtField.text!]
+                     "userName"  : self.usernmeTxtField.text!.toBase64()]
         Service.sharedInstance.postRequest(Url: Constant.APIs.signUp , modalName: UserNameModel.self, parameter: param as [String : Any]) { (result, error) in
             Utils.stopLoading()
             guard let json = result else {return}
             
             if json.Success! == 1
             {
-                Utils.saveTheString(value: self.usernmeTxtField.text!.trimWhiteSpaces(), key: Constant.usrNme)
+//               
+                
+                Utils.saveTheString(value: self.usernmeTxtField.text!.trimWhiteSpaces().toBase64(), key: Constant.usrNme)
+
                 
                 let timeStamp = Date().timeIntervalSince1970
                 

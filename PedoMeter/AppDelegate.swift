@@ -30,8 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            {
                return vc
            }
-           
-           
+
            return currentVc
        }
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -39,28 +38,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         // Override point for customization after application launch.
         
+        application.setMinimumBackgroundFetchInterval(2)
+
         let studyCode = Constant.Controllers.StudyCode.get() as? StudyCodeVC
         let home = Constant.Controllers.Home.get() as? HomeTotalStepsVC
         
         if Utils.getTheContent(key: Constant.usrNme) != nil
         {
-            
             let nav = UINavigationController.init(rootViewController: home!)
             window?.rootViewController = nav
             window?.makeKeyAndVisible()
         }
-            
         else {
-            
             let nav = UINavigationController.init(rootViewController: studyCode!)
             window?.rootViewController = nav
             window?.makeKeyAndVisible()
-            
         }
+        //registerBackgroundTaks()
         return true
     }
     
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if application.backgroundRefreshStatus == .available {
+            // yay!
+            print("background available")
+
+        }else{
+            print("background denied")
+
+        }
+        print("background refresh")
+        
+        
+        
+    }
     
+   
+//    private func registerBackgroundTaks() {
+//    BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.sanganan.appfetch", using: nil) { task in
+//    //This task is cast with processing request (BGProcessingTask)
+//    self.scheduleLocalNotification()
+//    self.handleImageFetcherTask(task: task as! BGProcessingTask)
+//    }
+//    BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.sanganan.apprefresh", using: nil) { task in
+//    //This task is cast with processing request (BGAppRefreshTask)
+//    self.scheduleLocalNotification()
+//    self.handleAppRefreshTask(task: task as! BGAppRefreshTask)
+//    }
+//    }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
            print("visible view con in foreground",self.visibleViewController)

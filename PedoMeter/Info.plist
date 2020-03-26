@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.sanganan.appfetch</string>
+		<string>com.sanganan.apprefresh</string>
+	</array>
+	<key>LSApplicationCategoryType</key>
+	<array/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -20,6 +27,38 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSHealthShareUsageDescription</key>
+	<string>We will use your health information to track your steps.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>We will use your health information to track your steps.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>sf-ui-display-ultralight-58646b19bf205</string>
+		<string>sf-ui-display-light-58646b33e0551</string>
+		<string>sf-ui-display-semibold-58646eddcae92</string>
+		<string>sf-ui-display-thin-58646e9b26e8b</string>
+		<string>SF-UI-Display-Regular</string>
+		<string>sf-ui-display-bold-58646a511e3d9</string>
+		<string>sf-ui-display-medium-58646be638f96</string>
+		<string>sf-ui-display-heavy-586470160b9e5</string>
+		<string>sf-ui-display-black-58646a6b80d5a</string>
+		<string>TitilliumWeb-Black</string>
+		<string>TitilliumWeb-Bold</string>
+		<string>TitilliumWeb-Regular</string>
+		<string>TitilliumWeb-SemiBold</string>
+		<string>TitilliumWeb-ExtraLight</string>
+		<string>TitilliumWeb-BoldItalic</string>
+		<string>TitilliumWeb-ExtraLightItalic</string>
+		<string>TitilliumWeb-SemiBoldItalic</string>
+		<string>TitilliumWeb-LightItalic</string>
+		<string>TitilliumWeb-Italic</string>
+		<string>TitilliumWeb-Light</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>processing</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -45,32 +84,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>sf-ui-display-ultralight-58646b19bf205</string>
-		<string>sf-ui-display-light-58646b33e0551</string>
-		<string>sf-ui-display-semibold-58646eddcae92</string>
-		<string>sf-ui-display-thin-58646e9b26e8b</string>
-		<string>SF-UI-Display-Regular</string>
-		<string>sf-ui-display-bold-58646a511e3d9</string>
-		<string>sf-ui-display-medium-58646be638f96</string>
-		<string>sf-ui-display-heavy-586470160b9e5</string>
-		<string>sf-ui-display-black-58646a6b80d5a</string>
-		<string>TitilliumWeb-Black</string>
-		<string>TitilliumWeb-Bold</string>
-		<string>TitilliumWeb-Regular</string>
-		<string>TitilliumWeb-SemiBold</string>
-		<string>TitilliumWeb-ExtraLight</string>
-		<string>TitilliumWeb-BoldItalic</string>
-		<string>TitilliumWeb-ExtraLightItalic</string>
-		<string>TitilliumWeb-SemiBoldItalic</string>
-		<string>TitilliumWeb-LightItalic</string>
-		<string>TitilliumWeb-Italic</string>
-		<string>TitilliumWeb-Light</string>
-	</array>
-	<key>NSHealthShareUsageDescription</key>
-	<string>We will use your health information to track your steps.</string>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>We will use your health information to track your steps.</string>
 </dict>
 </plist>

@@ -87,6 +87,11 @@ extension UIViewController: UITextFieldDelegate {
         guard let name = Utils.getTheString(key: Constant.usrNme) else {
             return ""
         }
+        if let finalName = name.fromBase64()
+        {
+            return finalName
+        }
+        
         return name
     }
     
@@ -99,7 +104,20 @@ extension String {
         let whiteSpaceSet = NSCharacterSet.whitespaces
         return self.trimmingCharacters(in: whiteSpaceSet)
     }
+    
+    func fromBase64() -> String? {
+        guard let data = Data(base64Encoded: self) else {
+            return nil
+        }
+
+        return String(data: data, encoding: .utf8)
+    }
+
+    func toBase64() -> String {
+        return Data(self.utf8).base64EncodedString()
+    }
 }
+
 
 //MARK:- Date Extensions
 extension Date {
