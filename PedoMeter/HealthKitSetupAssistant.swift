@@ -49,12 +49,22 @@ class HealthKitSetupAssistant {
     //MARK:- Total Steps(Time Wise  Steps)
     func getTotalSteps(startDte:Date, endDate:Date,  _ completion: @escaping (Double) -> Void) {
         
+        
+        
         guard let stepCountType = HKObjectType.quantityType(forIdentifier: .stepCount) else {
             fatalError("*** Unable to get the step count type ***")
         }
         
+        var startFinalDate = startDte
+        
+        if (startDte > Utils.getLoginDate())
+        {
+            startFinalDate = Utils.getLoginDate()
+        }
+        
+        
         let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
-        let predicate = HKQuery.predicateForSamples(withStart: startDte, end: endDate, options: .strictEndDate)
+        let predicate = HKQuery.predicateForSamples(withStart: startFinalDate, end: endDate, options: .strictEndDate)
         let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
             guard let result = result, let sum = result.sumQuantity() else {
                 completion(0.0)

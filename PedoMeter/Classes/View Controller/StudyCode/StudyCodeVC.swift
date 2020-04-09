@@ -54,7 +54,7 @@ class StudyCodeVC: UIViewController,UIGestureRecognizerDelegate {
             Utils.stopLoading()
             guard let json = result else {return}
             
-            if json.Success! == "1"
+            if json.Success! == 1
             {
                 let vc = Constant.Controllers.Login.get() as! LoginVC
                 vc.studyCode = self.studyCodeTxtField.text!
@@ -74,6 +74,7 @@ class StudyCodeVC: UIViewController,UIGestureRecognizerDelegate {
 
     @IBAction func studyCodeNxtTppd(_ sender: Any) {
         
+        studyCodeTxtField.resignFirstResponder()
         if studyCodeTxtField.text?.trimWhiteSpaces() == "" {
             
             AppUtils.showToast(message: ToastMsg.blnkStudyCode)

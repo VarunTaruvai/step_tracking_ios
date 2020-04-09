@@ -59,6 +59,9 @@ extension UIViewController: UITextFieldDelegate {
         }
     }
     
+    
+    
+    
     //MARK:- Tap Gesture (for dismissing modal VC)
     public func tapGesture(forVc place: UIViewController, forView view:UIView ) {
         
@@ -127,6 +130,11 @@ extension Date {
         
         var calender = Calendar.current
         calender.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+        
+        if Utils.getLoginDate() > calender.date(from: calender.dateComponents([.year, .month], from: calender.startOfDay(for: self)))! {
+                          return Utils.getLoginDate()
+                      }
+        
         return calender.date(from: calender.dateComponents([.year, .month], from: calender.startOfDay(for: self)))!
     }
     
@@ -145,8 +153,57 @@ extension Date {
         calender.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
         let sunday = calender.date(from: calender.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!
         
+        if Utils.getLoginDate() > calender.date(byAdding: .day, value: 1, to: sunday)! {
+                   return Utils.getLoginDate()
+               }
+        
         return calender.date(byAdding: .day, value: 1, to: sunday)!
     }
+    
+    
+    //Days Of Week
+    static func datesForWeek(from fromDate: Date, to toDate: Date) -> [DayWiseModal] {
+        var dates: [Date] = []
+        var date = fromDate
+        
+        let format = DateFormatter()
+        format.dateFormat = "d MMM yyyy"
+        format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+        
+        while date <= toDate {
+            dates.append(date)
+            guard let newDate = Calendar.current.date(byAdding: .day, value: 1, to: date) else { break }
+            date = newDate
+        }
+        
+        var array = [DayWiseModal]()
+        
+        for item in dates
+        {
+            let strtTimeStamp = item.startOfDay.timeIntervalSince1970
+            let endTimeStamp = item.endOfDay.timeIntervalSince1970
+            let finalEnd = endTimeStamp > Date().timeIntervalSince1970 ? Date().timeIntervalSince1970 : endTimeStamp
+            //vurrent date and time
+            let date = Date()
+            let format = DateFormatter()
+            format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+            format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let formattedDate = format.string(from: date)
+            format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+            let todyEndDte = format.date(from: formattedDate)!
+            
+            let finalEndDate = endTimeStamp > Date().timeIntervalSince1970 ? todyEndDte : item.endOfDay
+            
+            let newformat = DateFormatter()
+            newformat.dateFormat = "E, d MMM yyyy"
+            let shwngDate =  newformat.string(from: item)
+            let modal = DayWiseModal(shwngDate: shwngDate, strtDate: item.startOfDay, endDate: finalEndDate, strtTimeStamp: strtTimeStamp, endTimeStamp: finalEnd, step: 0)
+            array.append(modal)
+        }
+        
+        return array
+    }
+    
     
     //Days Of Month
     static func dates(from fromDate: Date, to toDate: Date) -> [DayWiseModal] {
@@ -231,6 +288,8 @@ extension Date {
             newformat.dateFormat = "E, d MMM yyyy"
             let shwngDate =  newformat.string(from: item)
             let modal = DayWiseModal(shwngDate: shwngDate, strtDate: item.startOfDay, endDate: finalEndDate, strtTimeStamp: strtTimeStamp, endTimeStamp: finalEnd, step: 0)
+            
+            
             array.append(modal)
         }
         
@@ -242,8 +301,18 @@ extension Date {
     var startOfDay: Date {
         var calendar = Calendar.current
         calendar.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+        if Utils.getLoginDate() > calendar.startOfDay(for: self) {
+            return Utils.getLoginDate()
+        }
+        
         return calendar.startOfDay(for: self)
     }
+    
+    var startOfDayForToday: Date {
+           var calendar = Calendar.current
+           calendar.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+           return calendar.startOfDay(for: self)
+       }
     
     // End of day
     var endOfDay: Date {
@@ -253,7 +322,7 @@ extension Date {
         var components = DateComponents()
         components.day = 1
         components.second = -1
-        return calendar.date(byAdding: components, to: startOfDay)!
+        return calendar.date(byAdding: components, to: startOfDayForToday)!
     }
     
 }

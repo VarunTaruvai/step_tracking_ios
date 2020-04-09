@@ -38,7 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         // Override point for customization after application launch.
         
-        application.setMinimumBackgroundFetchInterval(2)
+        
+        application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
 
         let studyCode = Constant.Controllers.StudyCode.get() as? StudyCodeVC
         let home = Constant.Controllers.Home.get() as? HomeTotalStepsVC
@@ -89,6 +90,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
            print("visible view con in foreground",self.visibleViewController)
+        if self.visibleViewController is HomeTotalStepsVC {
+             NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constant.NotificationIdentifier.homeRefreshNoti), object: nil, userInfo: nil)
+        }else if self.visibleViewController is DaysWiseVC
+        {
+             NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constant.NotificationIdentifier.dayRefreshNoti), object: nil, userInfo: nil)
+        }else if self.visibleViewController is HoursWiseStepsVC
+        {
+             NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constant.NotificationIdentifier.hourRefreshNoti), object: nil, userInfo: nil)
+        }
+        
 
        }
        func applicationWillResignActive(_ application: UIApplication) {

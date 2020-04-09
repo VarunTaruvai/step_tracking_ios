@@ -56,17 +56,21 @@ class Constant: NSObject {
     
     struct APIs {
         //saveUserSteps
-       static let baseURL              = "http://178.128.232.20:8081/"
+       static let baseURL              =  "https://steptrack.herokuapp.com/"
        static let checkStudyCode       =  APIs.baseURL + "checkstudycode"
-       static let signUp                =  "https://steptrack.herokuapp.com/signup"
-       static let endStudyApi             = APIs.baseURL +  "endparticipation"
-        static let saveUserSteps             = APIs.baseURL +  "saveUserSteps"
+       static let signUp               =  APIs.baseURL + "signup"
+       static let endStudyApi          =  APIs.baseURL +  "endparticipation"
+        static let saveUserSteps       =  APIs.baseURL +  "saveUserSteps"
 
 
        }
     
     struct NotificationIdentifier {
-              static let nextNoti       = "pushToNxt"
+        static let nextNoti       = "pushToNxt"
+        static let homeRefreshNoti       = "homeRefreshNoti"
+        static let dayRefreshNoti       = "dayRefreshNoti"
+        static let hourRefreshNoti       = "hourRefreshNoti"
+
           }
        
        
@@ -89,6 +93,7 @@ class Constant: NSObject {
     //UserDefaults Data
     static let usrNme = "usrNme"
     static let timeStamp = "timeStamp"
+    static let loginTimeStamp = "loginTimeStamp"
 
     
 }

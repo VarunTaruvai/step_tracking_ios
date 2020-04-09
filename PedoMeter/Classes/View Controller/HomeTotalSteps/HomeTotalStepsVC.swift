@@ -19,8 +19,12 @@ class HomeTotalStepsVC: UIViewController,UIGestureRecognizerDelegate {
     var mnthlyStepsCount = Int()
     var refreshControl = UIRefreshControl()
     
+    @IBOutlet weak var dateLbl: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.dateLbl.text = "You are participating in this study since " + Utils.getLoginDateForHome()
+        
         
         homeStepsTblView.delegate = self
         homeStepsTblView.dataSource = self
@@ -32,7 +36,11 @@ class HomeTotalStepsVC: UIViewController,UIGestureRecognizerDelegate {
         refreshControl.addTarget(self, action: #selector(totlStepsData), for: .valueChanged)
         homeStepsTblView.addSubview(refreshControl)
         self.commonNavigationBar(title: "Hi, \(self.userName)", controller: Constant.Controllers.Home)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(pushHome), name: NSNotification.Name(rawValue: Constant.NotificationIdentifier.nextNoti), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(totlStepsData), name: NSNotification.Name(rawValue: Constant.NotificationIdentifier.homeRefreshNoti), object: nil)
+        
         // Do any additional setup after loading the view.
     }
     
@@ -86,10 +94,11 @@ class HomeTotalStepsVC: UIViewController,UIGestureRecognizerDelegate {
             Utils.stopLoading()
             guard let json = result else {return}
             
-            if json.Success! == "1"
+            if json.Success! == 1
             {
                 Utils.removeTheContent(key: Constant.usrNme)
                 Utils.removeTheContent(key: Constant.timeStamp)
+                Utils.removeTheContent(key: Constant.loginTimeStamp)
                 let vc = Constant.Controllers.PartionEnded.get() as! ParticipatonEndedVC
                 self.navigationController?.pushViewController(vc, animated: true)
             }else
@@ -178,7 +187,13 @@ extension HomeTotalStepsVC: UITableViewDelegate, UITableViewDataSource {
             format1.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let formattedDate1 = format1.string(from: date1)
             format1.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
-            let last24Strt = format1.date(from: formattedDate1)!
+            var last24Strt = format1.date(from: formattedDate1)!
+            
+            if Utils.getLoginDate() > last24Strt {
+                                     last24Strt = Utils.getLoginDate()
+                                 }
+            
+            
             
             let modal = DayWiseModal(shwngDate : "Last 24 Hours", strtDate : last24Strt, endDate : Date().endOfDay, strtTimeStamp : Date().startOfDay.timeIntervalSince1970, endTimeStamp : Date().timeIntervalSince1970, step : lst24StepsCount)
             
@@ -253,21 +268,21 @@ extension HomeTotalStepsVC {
             //MARK:- Today
             self.healthKit.getTotalSteps(startDte: Date().startOfDay, endDate: todyEndDte) { (steps) in
                 
-                if steps == 0.0 && self.shownWarning == false {
-                    self.shownWarning = true
-                    DispatchQueue.main.async {
-                        self.notAllowAlert()
-                    }
-                    
-                }
-                    
-                else {
+//                if steps == 0.0 && self.shownWarning == false {
+//                    self.shownWarning = true
+//                    DispatchQueue.main.async {
+//                        self.notAllowAlert()
+//                    }
+//
+//                }
+//
+//                else {
                     self.todyStepsCount = Int(steps)
                     DispatchQueue.main.async {
                         self.homeStepsTblView.reloadData()
                     }
                     
-                }
+//                }
             }
             
             //MARK:- Last 24 Hours
@@ -351,7 +366,7 @@ extension HomeTotalStepsVC {
                    Utils.stopLoading()
                    guard let json = result else {return}
                    
-                   if json.Success! == "1"
+                   if json.Success! == 1
                    {
                       let timeStamp = Date().timeIntervalSince1970
                      Utils.saveTheString(value: "\(timeStamp)", key: Constant.timeStamp)

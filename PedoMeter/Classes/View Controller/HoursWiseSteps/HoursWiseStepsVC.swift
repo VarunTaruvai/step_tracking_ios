@@ -32,6 +32,8 @@ class HoursWiseStepsVC: UIViewController {
         self.commonNavigationBar(title: dayModal!.showingDate, controller: Constant.Controllers.DaysDetails)
         hoursWiseTblView.separatorStyle = .none
         
+         NotificationCenter.default.addObserver(self, selector: #selector(pushToHourlyStats), name: NSNotification.Name(rawValue: Constant.NotificationIdentifier.hourRefreshNoti), object: nil)
+        
         // Do any additional setup after loading the view.
     }
     

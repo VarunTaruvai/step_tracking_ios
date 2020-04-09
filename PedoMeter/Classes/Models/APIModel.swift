@@ -12,33 +12,33 @@ import UIKit
 
 struct StudyCodeModel : Codable {
     let Message : String?
-    let Success : String?
+    let Success : Int?
 
     enum CodingKeys: String, CodingKey {
-        case Message = "msg"
-        case Success = "status"
+        case Message = "Message"
+        case Success = "Success"
     }
 
 }
 
 struct EndStudyModel : Codable {
-    let Message : String?
-    let Success : String?
+     let Message : String?
+       let Success : Int?
 
-    enum CodingKeys: String, CodingKey {
-        case Message = "msg"
-        case Success = "status"
-    }
+       enum CodingKeys: String, CodingKey {
+           case Message = "Message"
+           case Success = "Success"
+       }
 
 }
 
 struct StepSaveModel : Codable {
     let Message : String?
-    let Success : String?
+    let Success : Int?
 
     enum CodingKeys: String, CodingKey {
-        case Message = "msg"
-        case Success = "status"
+        case Message = "Message"
+        case Success = "Success"
     }
 
 }

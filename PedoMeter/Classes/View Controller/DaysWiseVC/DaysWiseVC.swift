@@ -32,6 +32,9 @@ class DaysWiseVC: UIViewController {
         refreshControl.addTarget(self, action: #selector(pushToDaysStats), for:.valueChanged)
         daysDetailsTblView.addSubview(refreshControl)
         self.stepsCountLbl.text = String(describing: totlStepsCount)
+        
+         NotificationCenter.default.addObserver(self, selector: #selector(pushToDaysStats), name: NSNotification.Name(rawValue: Constant.NotificationIdentifier.dayRefreshNoti), object: nil)
+        
         // Do any additional setup after loading the view.
     }
     
@@ -96,7 +99,19 @@ extension DaysWiseVC {
         
         if whichRow == 2 {
             
-            self.days = Date.getDaysOfWeek()
+           // self.days = Date.getDaysOfWeek()
+            
+                    let dateInWeek = Date()
+                      let format = DateFormatter()
+                      format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+                      format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                      let formattedDate = format.string(from: dateInWeek)
+                      format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+                      let todyDte = format.date(from: formattedDate)!
+                      
+                      self.days = Date.datesForWeek(from: Date().startOfWeek(), to: todyDte)
+            
+            
             self.daysDetailsTblView.reloadData()
             self.getWeeklySteps()
         }

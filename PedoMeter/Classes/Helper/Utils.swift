@@ -53,6 +53,35 @@ class Utils: NSObject {
         userdefault.synchronize()
     }
     
+    
+    
+    static func getLoginDate() -> Date
+    {
+        let dte = Date(timeIntervalSince1970: Double(Utils.getTheString(key: Constant.loginTimeStamp)!)!)
+                   let format = DateFormatter()
+                   format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+                   format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                   let formattedDate = format.string(from: dte)
+                   format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+                   let todyDte = format.date(from: formattedDate)!
+    return todyDte
+        
+    }
+    
+    static func getLoginDateForHome() -> String
+       {
+           let dte = Date(timeIntervalSince1970: Double(Utils.getTheString(key: Constant.loginTimeStamp)!)!)
+                      let format = DateFormatter()
+                      format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+                      format.dateFormat = "MMM dd, yyyy, hh:mm a"
+                      let formattedDate = format.string(from: dte)
+//                      format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+//                      let todyDte = format.date(from: formattedDate)!
+       return formattedDate
+           
+       }
+    
+    
     //MARK:- MBPROGRESSHUd
            static func startLoading(_ view : UIView)
            {

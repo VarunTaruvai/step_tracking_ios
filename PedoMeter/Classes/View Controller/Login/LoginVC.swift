@@ -26,6 +26,8 @@ class LoginVC: UIViewController, SFSafariViewControllerDelegate {
     
     @IBAction func loginNxtTppd(_ sender: Any) {
         
+        usernmeTxtField.resignFirstResponder()
+
         if usernmeTxtField.text?.trimWhiteSpaces() == "" && tickBoxBtn.isSelected == false {
             
             AppUtils.showToast(message: ToastMsg.alLginFldsMandte)
@@ -66,8 +68,10 @@ class LoginVC: UIViewController, SFSafariViewControllerDelegate {
 
                 
                 let timeStamp = Date().timeIntervalSince1970
+                Utils.saveTheString(value: "\(timeStamp)", key: Constant.loginTimeStamp)
+
                 
-                 Utils.saveTheString(value: "\(timeStamp)", key: Constant.timeStamp)
+                   Utils.saveTheString(value: "\(timeStamp)", key: Constant.timeStamp)
                            let vc = Constant.Controllers.Home.get() as! HomeTotalStepsVC
                            self.navigationController?.pushViewController(vc, animated: true)
                            self.removePreviousViewControllers()
