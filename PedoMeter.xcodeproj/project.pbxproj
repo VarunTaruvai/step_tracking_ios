@@ -48,6 +48,9 @@
 		C9BCFFA22409270800222130 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BCFFA12409270800222130 /* LoginVC.swift */; };
 		C9CBF406240937A100D043FD /* HomeTotalStepsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CBF405240937A100D043FD /* HomeTotalStepsVC.swift */; };
 		C9CBF40924093EB500D043FD /* DaysWiseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CBF40824093EB500D043FD /* DaysWiseVC.swift */; };
+		E383307F2440AD9000E4EBBD /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E383307E2440AD9000E4EBBD /* TermsViewController.swift */; };
+		E38330832440AE2800E4EBBD /* TermsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38330812440AE2800E4EBBD /* TermsCell.swift */; };
+		E38330842440AE2800E4EBBD /* TermsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E38330822440AE2800E4EBBD /* TermsCell.xib */; };
 		E3FB5BAB2429DDA300774675 /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FB5BA92429DDA300774675 /* ReachabilityManager.swift */; };
 		E3FB5BAC2429DDA300774675 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FB5BAA2429DDA300774675 /* Service.swift */; };
 		E3FB5BAF2429E43100774675 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FB5BAE2429E43100774675 /* APIModel.swift */; };
@@ -100,6 +103,9 @@
 		C9BCFFA12409270800222130 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		C9CBF405240937A100D043FD /* HomeTotalStepsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTotalStepsVC.swift; sourceTree = "<group>"; };
 		C9CBF40824093EB500D043FD /* DaysWiseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysWiseVC.swift; sourceTree = "<group>"; };
+		E383307E2440AD9000E4EBBD /* TermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
+		E38330812440AE2800E4EBBD /* TermsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsCell.swift; sourceTree = "<group>"; };
+		E38330822440AE2800E4EBBD /* TermsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsCell.xib; sourceTree = "<group>"; };
 		E3FB5BA92429DDA300774675 /* ReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		E3FB5BAA2429DDA300774675 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		E3FB5BAE2429E43100774675 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
@@ -155,6 +161,7 @@
 		C93FE76B240D03C500BA311A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E38330802440AE0800E4EBBD /* Cells */,
 				E3FB5BAD2429E41200774675 /* Models */,
 				C941084F240A3EB700EE79C1 /* Helper */,
 				C9410849240A3B0900EE79C1 /* Extension */,
@@ -280,6 +287,7 @@
 		C9BCFF9C240919E300222130 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E383307D2440AD1200E4EBBD /* TermsAndConditions */,
 				C9BCFF9D24091A0E00222130 /* StudyCode */,
 				C9BCFFA0240926D600222130 /* Login */,
 				C9CBF4042409374200D043FD /* HomeTotalSteps */,
@@ -330,6 +338,23 @@
 				9EAF4737C8DEF0C5DF0A3824 /* Pods-PedoMeter.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E383307D2440AD1200E4EBBD /* TermsAndConditions */ = {
+			isa = PBXGroup;
+			children = (
+				E383307E2440AD9000E4EBBD /* TermsViewController.swift */,
+			);
+			path = TermsAndConditions;
+			sourceTree = "<group>";
+		};
+		E38330802440AE0800E4EBBD /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E38330812440AE2800E4EBBD /* TermsCell.swift */,
+				E38330822440AE2800E4EBBD /* TermsCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		E3FB5BA82429DDA300774675 /* Networking */ = {
@@ -419,6 +444,7 @@
 				C9BCFF942408F39000222130 /* LaunchScreen.storyboard in Resources */,
 				C9BCFF912408F39000222130 /* Assets.xcassets in Resources */,
 				C93FE79E240D045300BA311A /* TitilliumWeb-Black.ttf in Resources */,
+				E38330842440AE2800E4EBBD /* TermsCell.xib in Resources */,
 				C93FE790240D044A00BA311A /* sf-ui-display-heavy-586470160b9e5.otf in Resources */,
 				C93FE791240D044A00BA311A /* sf-ui-display-black-58646a6b80d5a.otf in Resources */,
 				C93FE78E240D044A00BA311A /* sf-ui-display-bold-58646a511e3d9.otf in Resources */,
@@ -496,9 +522,11 @@
 				C941084C240A3B4300EE79C1 /* OutletExtension.swift in Sources */,
 				C91C3CD7240E2EC2008060B8 /* HealthKitSetupAssistant.swift in Sources */,
 				C9BCFF9F24091A2E00222130 /* StudyCodeVC.swift in Sources */,
+				E38330832440AE2800E4EBBD /* TermsCell.swift in Sources */,
 				C904D45E241BA16A00A570E8 /* hoursStepsModal.swift in Sources */,
 				C94C6D1C24094F1F00AAAC10 /* EndParticiptonVC.swift in Sources */,
 				C941084E240A3DC300EE79C1 /* UIVCExtension.swift in Sources */,
+				E383307F2440AD9000E4EBBD /* TermsViewController.swift in Sources */,
 				C91ED507240953E400CC9621 /* ToastMsg.swift in Sources */,
 				C91ED505240951F700CC9621 /* Constant.swift in Sources */,
 				C9CBF406240937A100D043FD /* HomeTotalStepsVC.swift in Sources */,
@@ -657,7 +685,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.postoperativeStepTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sanganan.stepTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -678,7 +706,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.postoperativeStepTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sanganan.stepTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

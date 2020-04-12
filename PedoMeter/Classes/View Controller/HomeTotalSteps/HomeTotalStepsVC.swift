@@ -89,7 +89,7 @@ class HomeTotalStepsVC: UIViewController,UIGestureRecognizerDelegate {
     func endParticiPationApi()
     {
         Utils.startLoading(self.view)
-        let param = ["userName"  : self.userName]
+        let param = ["userName"  : Utils.getTheString(key: Constant.usrNme)!]
         Service.sharedInstance.postRequest(Url: Constant.APIs.endStudyApi , modalName: EndStudyModel.self, parameter: param as [String : Any]) { (result, error) in
             Utils.stopLoading()
             guard let json = result else {return}

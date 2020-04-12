@@ -24,6 +24,7 @@ class hoursStepsModal: NSObject {
 }
 
 
+
 class serverStepsModal: NSObject {
     var starttime = Double()
     var endtime = Double()
@@ -35,7 +36,7 @@ class serverStepsModal: NSObject {
         self.starttime = strtTime
         self.endtime = end
         
-        if let name = Utils.getTheString(key: Constant.usrNme)!.fromBase64()
+        if let name = Utils.getTheString(key: Constant.usrNme)
         {
             self.userName = name
         }else{

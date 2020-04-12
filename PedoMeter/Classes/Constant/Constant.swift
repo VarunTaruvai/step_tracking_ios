@@ -11,6 +11,9 @@ import UIKit
 class Constant: NSObject {
     
     
+    
+    // com.postoperativeStepTracker
+    
     static let Testing = 1
 
     public  struct Storyboards {
@@ -26,6 +29,7 @@ class Constant: NSObject {
         case HoursWiseSteps
         case EndPArticpton
         case PartionEnded
+        case Terms
         
         func get() -> UIViewController{
             switch self {
@@ -44,6 +48,8 @@ class Constant: NSObject {
                 return Storyboards.main.instantiateViewController(withIdentifier: "EndParticiptonVC")
             case .PartionEnded:
                 return Storyboards.main.instantiateViewController(withIdentifier: "ParticipatonEndedVC")
+            case .Terms:
+                return Storyboards.main.instantiateViewController(withIdentifier: "TermsViewController")
                 
             default:
                 print("")

@@ -28,20 +28,21 @@ class LoginVC: UIViewController, SFSafariViewControllerDelegate {
         
         usernmeTxtField.resignFirstResponder()
 
-        if usernmeTxtField.text?.trimWhiteSpaces() == "" && tickBoxBtn.isSelected == false {
-            
-            AppUtils.showToast(message: ToastMsg.alLginFldsMandte)
-        }
-            
-        else if usernmeTxtField.text?.trimWhiteSpaces() == "" {
+//        if usernmeTxtField.text?.trimWhiteSpaces() == "" && tickBoxBtn.isSelected == false {
+//
+//            AppUtils.showToast(message: ToastMsg.alLginFldsMandte)
+//        }
+//
+//        else
+            if usernmeTxtField.text?.trimWhiteSpaces() == "" {
             
             AppUtils.showToast(message: ToastMsg.blnkUsrNme)
         }
             
-        else if tickBoxBtn.isSelected == false {
-            
-            AppUtils.showToast(message: ToastMsg.blnkTNdC)
-        }
+//        else if tickBoxBtn.isSelected == false {
+//
+//            AppUtils.showToast(message: ToastMsg.blnkTNdC)
+//        }
             
         else {
             

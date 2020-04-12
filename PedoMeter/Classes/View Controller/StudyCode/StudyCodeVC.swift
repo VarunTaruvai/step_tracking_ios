@@ -56,7 +56,7 @@ class StudyCodeVC: UIViewController,UIGestureRecognizerDelegate {
             
             if json.Success! == 1
             {
-                let vc = Constant.Controllers.Login.get() as! LoginVC
+                let vc = Constant.Controllers.Terms.get() as! TermsViewController
                 vc.studyCode = self.studyCodeTxtField.text!
                 self.navigationController?.pushViewController(vc, animated: true)
                 

@@ -26,8 +26,8 @@ struct EndStudyModel : Codable {
        let Success : Int?
 
        enum CodingKeys: String, CodingKey {
-           case Message = "Message"
-           case Success = "Success"
+           case Message = "msg"
+           case Success = "status"
        }
 
 }
