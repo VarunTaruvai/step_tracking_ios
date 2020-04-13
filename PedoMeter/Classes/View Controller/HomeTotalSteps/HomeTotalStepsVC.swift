@@ -26,6 +26,10 @@ class HomeTotalStepsVC: UIViewController,UIGestureRecognizerDelegate {
         self.dateLbl.text = "You are participating in this study since " + Utils.getLoginDateForHome()
         
         
+  
+        
+        
+        
         homeStepsTblView.delegate = self
         homeStepsTblView.dataSource = self
         self.homeStepsTblView.estimatedRowHeight = 85
@@ -189,7 +193,7 @@ extension HomeTotalStepsVC: UITableViewDelegate, UITableViewDataSource {
             format1.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
             var last24Strt = format1.date(from: formattedDate1)!
             
-            if Utils.getLoginDate() > last24Strt {
+            if Utils.getLoginDate() >= last24Strt {
                                      last24Strt = Utils.getLoginDate()
                                  }
             

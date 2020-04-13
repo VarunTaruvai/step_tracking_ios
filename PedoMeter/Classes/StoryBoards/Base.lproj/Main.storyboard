@@ -169,25 +169,25 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="p4M-gp-4UE">
-                                <rect key="frame" x="25" y="279" width="364" height="338"/>
+                                <rect key="frame" x="25" y="288.5" width="364" height="319.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="tea-oE-WNs">
-                                        <rect key="frame" x="0.0" y="0.0" width="364" height="259"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="364" height="240.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="fFd-2c-tfC">
-                                                <rect key="frame" x="0.0" y="0.0" width="364" height="258"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="364" height="239.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="yUF-fj-ljR">
-                                                        <rect key="frame" x="18.5" y="0.0" width="327.5" height="173"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="364" height="154.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="DaG-kV-ajb">
-                                                                <rect key="frame" x="15" y="0.0" width="297.5" height="75"/>
+                                                                <rect key="frame" x="15" y="0.0" width="334" height="75"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="75" id="uul-MG-Sp7"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Assessing Post-Operative Physical Activity and Recovery Among Neurosurgical Patients Using Smartphone Accelerometers" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swC-0n-Sn7">
-                                                                <rect key="frame" x="6" y="95" width="315.5" height="78"/>
+                                                                <rect key="frame" x="6" y="95" width="352" height="59.5"/>
                                                                 <fontDescription key="fontDescription" name="TitilliumWeb-Italic" family="Titillium Web" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -201,7 +201,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R5H-3G-GHg">
-                                                        <rect key="frame" x="0.0" y="218" width="364" height="40"/>
+                                                        <rect key="frame" x="0.0" y="199.5" width="364" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="bNo-Oc-TiZ"/>
                                                         </constraints>
@@ -224,7 +224,7 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Les-yP-hD3">
-                                                <rect key="frame" x="0.0" y="258" width="364" height="1"/>
+                                                <rect key="frame" x="0.0" y="239.5" width="364" height="1"/>
                                                 <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="yw5-wJ-cc2"/>
@@ -239,13 +239,13 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wmI-Sy-z1s">
-                                        <rect key="frame" x="0.0" y="288" width="364" height="50"/>
+                                        <rect key="frame" x="0.0" y="269.5" width="364" height="50"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="f5i-up-cOu">
                                                 <rect key="frame" x="0.0" y="25" width="0.0" height="0.0"/>
                                                 <subviews>
                                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DJJ-I1-M4E">
-                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="33"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="49"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="25" id="gTS-QZ-oM2"/>
                                                         </constraints>
@@ -256,7 +256,7 @@
                                                         </connections>
                                                     </button>
                                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDZ-Kv-Fkl">
-                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="33"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="49"/>
                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="17"/>
                                                         <state key="normal" title="Terms &amp; Conditions">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

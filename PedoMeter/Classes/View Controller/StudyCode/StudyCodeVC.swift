@@ -14,6 +14,9 @@ class StudyCodeVC: UIViewController,UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+
+        
         self.commonNavigationBar(title: "", controller: Constant.Controllers.StudyCode)
         // Do any additional setup after loading the view.
     }

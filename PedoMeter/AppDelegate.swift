@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         
-        application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+        application.setMinimumBackgroundFetchInterval(21600)
 
         let studyCode = Constant.Controllers.StudyCode.get() as? StudyCodeVC
         let home = Constant.Controllers.Home.get() as? HomeTotalStepsVC
@@ -71,6 +71,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("background refresh")
         
         
+         NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constant.NotificationIdentifier.homeRefreshNoti), object: nil, userInfo: nil)
+        completionHandler(UIBackgroundFetchResult.newData)
+
         
     }
     

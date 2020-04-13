@@ -125,13 +125,18 @@ extension String {
 //MARK:- Date Extensions
 extension Date {
     
+    
+    func hours(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.hour], from: date, to: self).hour ?? 0
+    }
+    
     //Start Of Month
     func startOfMonth() -> Date {
         
         var calender = Calendar.current
         calender.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
         
-        if Utils.getLoginDate() > calender.date(from: calender.dateComponents([.year, .month], from: calender.startOfDay(for: self)))! {
+        if Utils.getLoginDate() >= calender.date(from: calender.dateComponents([.year, .month], from: calender.startOfDay(for: self)))! {
                           return Utils.getLoginDate()
                       }
         
@@ -153,7 +158,7 @@ extension Date {
         calender.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
         let sunday = calender.date(from: calender.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!
         
-        if Utils.getLoginDate() > calender.date(byAdding: .day, value: 1, to: sunday)! {
+        if Utils.getLoginDate() >= calender.date(byAdding: .day, value: 1, to: sunday)! {
                    return Utils.getLoginDate()
                }
         
@@ -301,7 +306,7 @@ extension Date {
     var startOfDay: Date {
         var calendar = Calendar.current
         calendar.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
-        if Utils.getLoginDate() > calendar.startOfDay(for: self) {
+        if Utils.getLoginDate() >= calendar.startOfDay(for: self) {
             return Utils.getLoginDate()
         }
         

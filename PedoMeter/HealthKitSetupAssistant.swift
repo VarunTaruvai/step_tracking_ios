@@ -57,7 +57,7 @@ class HealthKitSetupAssistant {
         
         var startFinalDate = startDte
         
-        if (startDte > Utils.getLoginDate())
+        if (Utils.getLoginDate() >= startDte)
         {
             startFinalDate = Utils.getLoginDate()
         }
@@ -129,6 +129,11 @@ class HealthKitSetupAssistant {
                                             
                                             if result.endDate > newCurntDte {
                                                 
+                                                let diff = result.endDate.hours(from: newCurntDte)
+                                                
+                                                if diff < 1 {
+                                                   arr.append(hoursStepsModal(curntHurs: currenthour, stepsTkn: Int(result.sumQuantity()?.doubleValue(for: HKUnit.count()) ?? 0), nxtHur: nexthur))
+                                                }
                                                 print("no")
                                                 return
                                                 

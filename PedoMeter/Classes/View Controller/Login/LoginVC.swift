@@ -63,16 +63,26 @@ class LoginVC: UIViewController, SFSafariViewControllerDelegate {
             
             if json.Success! == 1
             {
-//               
+//
+                
                 
                 Utils.saveTheString(value: self.usernmeTxtField.text!.trimWhiteSpaces().toBase64(), key: Constant.usrNme)
 
                 
-                let timeStamp = Date().timeIntervalSince1970
-                Utils.saveTheString(value: "\(timeStamp)", key: Constant.loginTimeStamp)
+                let formatter = DateFormatter()
+                formatter.timeZone = TimeZone(identifier: TimeZone.current.identifier)
+                  formatter.dateFormat = "yyyy-MM-dd HH" // "a" prints "pm" or "am"
+                  let hourString = formatter.string(from: Date()) // "12 AM"
+                  
+                  print("hours", hourString)
+                let date = formatter.date(from: hourString)
+
+                let timeStamp = date?.timeIntervalSince1970
+                
+                Utils.saveTheString(value: "\(timeStamp!)", key: Constant.loginTimeStamp)
 
                 
-                   Utils.saveTheString(value: "\(timeStamp)", key: Constant.timeStamp)
+                   Utils.saveTheString(value: "\(timeStamp!)", key: Constant.timeStamp)
                            let vc = Constant.Controllers.Home.get() as! HomeTotalStepsVC
                            self.navigationController?.pushViewController(vc, animated: true)
                            self.removePreviousViewControllers()
