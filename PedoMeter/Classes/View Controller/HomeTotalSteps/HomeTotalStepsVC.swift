@@ -24,12 +24,7 @@ class HomeTotalStepsVC: UIViewController,UIGestureRecognizerDelegate {
         super.viewDidLoad()
         
         self.dateLbl.text = "You are participating in this study since " + Utils.getLoginDateForHome()
-        
-        
-  
-        
-        
-        
+   
         homeStepsTblView.delegate = self
         homeStepsTblView.dataSource = self
         self.homeStepsTblView.estimatedRowHeight = 85
@@ -39,7 +34,7 @@ class HomeTotalStepsVC: UIViewController,UIGestureRecognizerDelegate {
         refreshControl.tintColor = .white
         refreshControl.addTarget(self, action: #selector(totlStepsData), for: .valueChanged)
         homeStepsTblView.addSubview(refreshControl)
-        self.commonNavigationBar(title: "Hi, \(self.userName)", controller: Constant.Controllers.Home)
+        self.commonNavigationBar(title: "Hi \(self.userName),", controller: Constant.Controllers.Home)
         
         NotificationCenter.default.addObserver(self, selector: #selector(pushHome), name: NSNotification.Name(rawValue: Constant.NotificationIdentifier.nextNoti), object: nil)
         
@@ -230,15 +225,17 @@ extension HomeTotalStepsVC: UITableViewDelegate, UITableViewDataSource {
 extension HomeTotalStepsVC {
     
     func notAllowAlert() {
-        let alert = UIAlertController(title: "No Steps Data Found", message: "There was no steps data found for you. If you expected to see data, it may be that StepMeter is not authorised to read your steps count. Please go to the settings app (Privacy -> HealthKit) to change this.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+        let name = Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String
+
+        let alert = UIAlertController(title: "No Steps Data Found", message: "There was no steps data found for you. If you expected to see data, it may be that \(name) is not authorised to read your steps count. Please go to the settings app (Privacy -> Health -> \(name)) to change this.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Settings", style: .default, handler:  { action in
             if let url = URL(string:UIApplication.openSettingsURLString) {
                 if UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
             }            }))
-        alert.view.tintColor = .black
+        alert.view.tintColor = UIColor(red: 204.0/255.0, green: 0.0, blue: 51.0/255.0, alpha: 1.0)
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -247,17 +244,31 @@ extension HomeTotalStepsVC {
         
         healthKit.authorizeHealthKit { (authorized, error) in
             
-            guard authorized else {
-                
-                let baseMessage = "HealthKit Authorization Failed"
-                if let error = error {
-                    print("\(baseMessage). Reason: \(error.localizedDescription)")
+//            guard authorized else {
+//
+//                let baseMessage = "HealthKit Authorization Failed"
+//                if let error = error {
+//                    print("\(baseMessage). Reason: \(error.localizedDescription)")
+//                }
+//                else {
+//                    print(baseMessage)
+//                }
+//
+//                return
+//            }
+            
+            if authorized == false
+            {
+                DispatchQueue.main.async {
+                    self.dateLbl.text = "Your step data is not being measured"
+                    self.notAllowAlert()
                 }
-                else {
-                    print(baseMessage)
-                }
-                
                 return
+            }else
+            {
+               DispatchQueue.main.async {
+                    self.dateLbl.text = "You are participating in this study since " + Utils.getLoginDateForHome()
+                }
             }
             
             //Current Date And Time
@@ -372,7 +383,7 @@ extension HomeTotalStepsVC {
                    
                    if json.Success! == 1
                    {
-                      let timeStamp = Date().timeIntervalSince1970
+                    let timeStamp = param.last!["endtime"]!
                      Utils.saveTheString(value: "\(timeStamp)", key: Constant.timeStamp)
                    }else
                    {

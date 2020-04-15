@@ -13,9 +13,9 @@ class Constant: NSObject {
     
     
     // com.postoperativeStepTracker
-    
+    // com.sanganan.stepTracker
     static let Testing = 1
-
+    
     public  struct Storyboards {
         
         static let main = UIStoryboard(name:"Main",bundle:nil)
@@ -62,29 +62,29 @@ class Constant: NSObject {
     
     struct APIs {
         //saveUserSteps
-       static let baseURL              =  "https://steptrack.herokuapp.com/"
-       static let checkStudyCode       =  APIs.baseURL + "checkstudycode"
-       static let signUp               =  APIs.baseURL + "signup"
-       static let endStudyApi          =  APIs.baseURL +  "endparticipation"
-        static let saveUserSteps       =  APIs.baseURL +  "saveUserSteps"
-
-
-       }
+        static let baseURL              =  "http://ec2-52-90-31-249.compute-1.amazonaws.com:8080/"
+        static let checkStudyCode       =  APIs.baseURL + "checkstudycode"
+        static let signUp               =  APIs.baseURL + "signup"
+        static let endStudyApi          =  APIs.baseURL +  "endparticipation"
+        static let saveUserSteps        =  APIs.baseURL +  "saveUserSteps"
+        
+        
+    }
     
     struct NotificationIdentifier {
         static let nextNoti       = "pushToNxt"
         static let homeRefreshNoti       = "homeRefreshNoti"
         static let dayRefreshNoti       = "dayRefreshNoti"
         static let hourRefreshNoti       = "hourRefreshNoti"
-
-          }
-       
-       
-       struct ErrorMsg {
+        
+    }
+    
+    
+    struct ErrorMsg {
         static let errorMsg   = "Ooops!! Connection Error."
         static let offLineMsg = "You seems offline"
-
-          }
+        
+    }
     
     
     // TimeWiseSteps VC
@@ -100,6 +100,6 @@ class Constant: NSObject {
     static let usrNme = "usrNme"
     static let timeStamp = "timeStamp"
     static let loginTimeStamp = "loginTimeStamp"
-
+    
     
 }

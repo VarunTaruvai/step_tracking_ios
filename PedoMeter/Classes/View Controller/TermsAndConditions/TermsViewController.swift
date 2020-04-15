@@ -21,7 +21,7 @@ class TermsViewController: UIViewController,WKUIDelegate,WKNavigationDelegate {
         tblView.estimatedRowHeight = 1000
         self.tblView.reloadData()
         self.navigationItem.hidesBackButton = true
-        self.commonNavigationBar(title: "", controller: Constant.Controllers.Terms)
+        self.commonNavigationBar(title: "Terms of use", controller: Constant.Controllers.Terms)
         // Do any additional setup after loading the view.
     }
     
@@ -71,7 +71,8 @@ extension TermsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return   UITableView.automaticDimension
+       // return   UITableView.automaticDimension
+        return   2500.0
     }
     
     

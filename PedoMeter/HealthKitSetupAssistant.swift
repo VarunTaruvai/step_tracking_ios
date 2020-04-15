@@ -35,13 +35,58 @@ class HealthKitSetupAssistant {
         //       let healthKitTypesToWrite: Set<HKSampleType> = [stepsCount]
         
         let healthKitTypesToRead: Set<HKObjectType> = [stepsCount]
-        
+        let healthKitTypesToWrite: Set<HKSampleType> = [HKObjectType.quantityType(forIdentifier: .stepCount)!]
+
         //4. Request Authorization
-        HKHealthStore().requestAuthorization(toShare: [], read: healthKitTypesToRead) { (success, error) in
-            completion(success, error)
+//        HKHealthStore().requestAuthorization(toShare: [], read: healthKitTypesToRead) { (success, error) in
+//            completion(success, error)
+//            if (success == true)
+//            {
+//                print("user permitted healthkit")
+//                completion(true, nil)
+//
+//
+//            }else
+//            {
+//                print("user denied healthkit")
+//                completion(false, error)
+//
+//
+//            }
+//
+//        }
+        
+        self.healthStore.requestAuthorization(toShare: healthKitTypesToWrite, read: healthKitTypesToRead, completion: { (access, error) in
+
+            // Determine if the user saw the permission view
             
-            
-        }
+            if access == true
+            {
+                print("Permission gggg")
+
+            }else
+            {
+                print("Permission ddddd")
+            }
+                print("User was shown permission view")
+
+                // ** IMPORTANT
+                // Check for access to your HealthKit Type(s). This is an example of using BodyMass.
+            if (self.healthStore.authorizationStatus(for: stepsCount) == .sharingAuthorized ) {
+                    print("Permission Granted to Access stepCOunt")
+                completion(true, nil)
+
+                } else {
+                    print("Permission Denied to Access stepCOunt")
+                completion(false, error)
+
+                }
+
+        })
+        
+        
+        
+        
         
     }
     
