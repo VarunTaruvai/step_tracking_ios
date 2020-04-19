@@ -13,6 +13,9 @@ import IQKeyboardManagerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var isNetworkAvailable:Bool?
+    let healthKit = HealthKitSetupAssistant()
+    var isServerCalled : Bool = false
+
 
     var window: UIWindow?
     var visibleViewController: UIViewController? {
@@ -71,7 +74,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("background refresh")
         
         
-         NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constant.NotificationIdentifier.homeRefreshNoti), object: nil, userInfo: nil)
+       //  NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constant.NotificationIdentifier.homeRefreshNoti), object: nil, userInfo: nil)
+        self.stepCollectionWork()
         completionHandler(UIBackgroundFetchResult.newData)
 
         
@@ -108,6 +112,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        func applicationWillResignActive(_ application: UIApplication) {
            print("visible view con",self.visibleViewController)
        }
+    
+    
+    
+    func stepCollectionWork()
+    {
+        healthKit.authorizeHealthKit { (authorized, error) in
+    if authorized == false
+    { return  }
+            
+        //MARK:- ServerSideWork
+        self.healthKit.getHourlyStepsForServer { (array) in
+            
+            var reqArr = [[String : Any]]()
+            for item in array
+            {
+           reqArr.append(["starttime":item.starttime,"endtime":item.endtime,"userName":item.userName,"steps":item.steps])
+            }
+            
+            print(reqArr)
+            DispatchQueue.main.async {
+                if reqArr.count > 0
+                {
+                    if self.isServerCalled == true {
+                            return
+                        }
+               self.sendDataToServer(param: reqArr)
+                    self.isServerCalled = true
+
+                }
+            }
+            
+        }
+        
+        }
+    }
+    
+    func sendDataToServer(param : [[String:Any]])
+    {
+    
+        Service.sharedInstance.postRequestForHome(Url: Constant.APIs.saveUserSteps , modalName: StepSaveModel.self, parameter: param) { (result, error) in
+                  self.isServerCalled  = false
+                   Utils.stopLoading()
+                   guard let json = result else {return}
+                   
+                   if json.Success! == 1
+                   {
+                    let timeStamp = param.last!["endtime"]!
+                     Utils.saveTheString(value: "\(timeStamp)", key: Constant.timeStamp)
+                   }else
+                   {
+                   }
+
+                   
+               }
+    }
     
 }
 

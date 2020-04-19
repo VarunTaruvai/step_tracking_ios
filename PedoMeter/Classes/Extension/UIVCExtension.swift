@@ -158,13 +158,22 @@ extension Date {
         calender.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
         let sunday = calender.date(from: calender.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!
         
-        if Utils.getLoginDate() >= calender.date(byAdding: .day, value: 1, to: sunday)! {
+        if Utils.getLoginDate() >= sunday {
                    return Utils.getLoginDate()
                }
         
-        return calender.date(byAdding: .day, value: 1, to: sunday)!
+//        return calender.date(byAdding: .day, value: 1, to: sunday)!
+        return sunday
     }
     
+    func endOfWeek() -> Date {
+        
+        var calender = Calendar.current
+        calender.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+        let sunday = calender.date(from: calender.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!
+        
+        return calender.date(byAdding: .day, value: 7, to: sunday)!
+    }
     
     //Days Of Week
     static func datesForWeek(from fromDate: Date, to toDate: Date) -> [DayWiseModal] {

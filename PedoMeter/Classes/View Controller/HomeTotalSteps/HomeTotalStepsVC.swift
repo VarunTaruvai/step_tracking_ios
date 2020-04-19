@@ -348,25 +348,11 @@ extension HomeTotalStepsVC {
             
             
             //MARK:- ServerSideWork
-            self.healthKit.getHourlyStepsForServer { (array) in
-                
-                var reqArr = [[String : Any]]()
-                for item in array
-                {
-               reqArr.append(["starttime":item.starttime,"endtime":item.endtime,"userName":item.userName,"steps":item.steps])
-                }
-                
-                print(reqArr)
-                DispatchQueue.main.async {
-                    if reqArr.count > 0
-                    {
-                   self.sendDataToServer(param: reqArr)
-                    }
-                }
-                
-            }
+            DispatchQueue.main.async {
 
-            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.stepCollectionWork()
+            }
             print("HealthKit Successfully Authorized.")
         }
         refreshControl.endRefreshing()
@@ -375,21 +361,5 @@ extension HomeTotalStepsVC {
     
     
     
-    func sendDataToServer(param : [[String:Any]])
-    {
-        Service.sharedInstance.postRequestForHome(Url: Constant.APIs.saveUserSteps , modalName: StepSaveModel.self, parameter: param) { (result, error) in
-                   Utils.stopLoading()
-                   guard let json = result else {return}
-                   
-                   if json.Success! == 1
-                   {
-                    let timeStamp = param.last!["endtime"]!
-                     Utils.saveTheString(value: "\(timeStamp)", key: Constant.timeStamp)
-                   }else
-                   {
-                   }
 
-                   
-               }
-    }
 }

@@ -100,16 +100,15 @@ extension DaysWiseVC {
         if whichRow == 2 {
             
            // self.days = Date.getDaysOfWeek()
-            
-                    let dateInWeek = Date()
-                      let format = DateFormatter()
-                      format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
-                      format.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                      let formattedDate = format.string(from: dateInWeek)
-                      format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
-                      let todyDte = format.date(from: formattedDate)!
+            let dateInWeek = Date()
+//                      let format = DateFormatter()
+//                      format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+//                      format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//                      let formattedDate = format.string(from: dateInWeek)
+//                      format.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
+//                      let todyDte = format.date(from: formattedDate)!
                       
-                      self.days = Date.datesForWeek(from: Date().startOfWeek(), to: todyDte)
+            self.days = Date.datesForWeek(from: Date().startOfWeek(), to: dateInWeek)
             
             
             self.daysDetailsTblView.reloadData()
