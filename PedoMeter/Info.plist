@@ -17,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationCategoryType</key>
 	<array/>
 	<key>LSRequiresIPhoneOS</key>
@@ -28,9 +28,9 @@
 		<true/>
 	</dict>
 	<key>NSHealthShareUsageDescription</key>
-	<string>We will use your health information to track your steps.</string>
+	<string>PostOp Tracker accesses your Apple Health step data to tell you how many steps you have walked after you have begun participation in the study.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>We will use your health information to track your steps.</string>
+	<string>PostOp Tracker accesses your Apple Health step data to tell you how many steps you have walked after you have begun participation in the study.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>sf-ui-display-ultralight-58646b19bf205</string>

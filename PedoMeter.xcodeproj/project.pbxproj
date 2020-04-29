@@ -677,8 +677,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PedoMeter/PedoMeter.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development: Varun Taruvai (MASK3ZG84C)";
+				CODE_SIGN_IDENTITY = "Apple Distribution: Varun Taruvai (B8GBGDVA37)";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = B8GBGDVA37;
 				INFOPLIST_FILE = PedoMeter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -688,7 +689,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.postoperativeStepTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = step_development_latest;
+				PROVISIONING_PROFILE_SPECIFIER = step_AppStore;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -700,8 +701,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PedoMeter/PedoMeter.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development: Varun Taruvai (MASK3ZG84C)";
+				CODE_SIGN_IDENTITY = "Apple Distribution: Varun Taruvai (B8GBGDVA37)";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = B8GBGDVA37;
 				INFOPLIST_FILE = PedoMeter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -711,7 +713,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.postoperativeStepTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = step_development_latest;
+				PROVISIONING_PROFILE_SPECIFIER = step_AppStore;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
