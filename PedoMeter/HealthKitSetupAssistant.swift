@@ -37,24 +37,6 @@ class HealthKitSetupAssistant {
         let healthKitTypesToRead: Set<HKObjectType> = [stepsCount]
         let healthKitTypesToWrite: Set<HKSampleType> = [HKObjectType.quantityType(forIdentifier: .stepCount)!]
 
-        //4. Request Authorization
-//        HKHealthStore().requestAuthorization(toShare: [], read: healthKitTypesToRead) { (success, error) in
-//            completion(success, error)
-//            if (success == true)
-//            {
-//                print("user permitted healthkit")
-//                completion(true, nil)
-//
-//
-//            }else
-//            {
-//                print("user denied healthkit")
-//                completion(false, error)
-//
-//
-//            }
-//
-//        }
         
         self.healthStore.requestAuthorization(toShare: healthKitTypesToWrite, read: healthKitTypesToRead, completion: { (access, error) in
 
@@ -99,6 +81,7 @@ class HealthKitSetupAssistant {
         guard let stepCountType = HKObjectType.quantityType(forIdentifier: .stepCount) else {
             fatalError("*** Unable to get the step count type ***")
         }
+        print(stepCountType)
         
         var startFinalDate = startDte
         

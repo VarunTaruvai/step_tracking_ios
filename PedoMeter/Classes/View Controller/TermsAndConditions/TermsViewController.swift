@@ -91,7 +91,7 @@ extension TermsViewController: UITableViewDelegate, UITableViewDataSource {
         if complete != nil {
             webView.evaluateJavaScript("document.body.scrollHeight", completionHandler: { (height, error) in
               //  self.containerHeight.constant = height as! CGFloat
-                print("Container Height",height)
+                //print("Container Height",height)
                 self.webHgt = height as! Double
                 self.tblView.reloadData()
                 

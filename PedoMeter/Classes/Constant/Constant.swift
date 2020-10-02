@@ -51,8 +51,7 @@ class Constant: NSObject {
             case .Terms:
                 return Storyboards.main.instantiateViewController(withIdentifier: "TermsViewController")
                 
-            default:
-                print("")
+           
             }
         }
         

@@ -3,7 +3,7 @@
 //  PedoMeter
 //
 //  Created by saurav sinha on 28/02/20.
-//  Copyright © 2020 Sanganan. All rights reserved.
+//  
 //
 
 import UIKit
@@ -96,7 +96,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-           print("visible view con in foreground",self.visibleViewController)
         if self.visibleViewController is HomeTotalStepsVC {
              NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constant.NotificationIdentifier.homeRefreshNoti), object: nil, userInfo: nil)
         }else if self.visibleViewController is DaysWiseVC
@@ -110,7 +109,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
        }
        func applicationWillResignActive(_ application: UIApplication) {
-           print("visible view con",self.visibleViewController)
        }
     
     
