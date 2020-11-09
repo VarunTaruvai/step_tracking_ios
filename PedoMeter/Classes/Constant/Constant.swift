@@ -2,8 +2,8 @@
 //  Constant.swift
 //  PedoMeter
 //
-//  Created by saurav sinha on 28/02/20.
-//  Copyright © 2020 Sanganan. All rights reserved.
+//  Created by Varun on 28/02/20.
+//  Copyright © 2020 Rutgers. All rights reserved.
 //
 
 import UIKit
@@ -61,7 +61,7 @@ class Constant: NSObject {
     
     struct APIs {
         //saveUserSteps
-        static let baseURL              =  "http://ec2-52-90-31-249.compute-1.amazonaws.com:8080/"
+        static let baseURL              =  "http://ec2-54-221-96-120.compute-1.amazonaws.com:8080/"
         static let checkStudyCode       =  APIs.baseURL + "checkstudycode"
         static let signUp               =  APIs.baseURL + "signup"
         static let endStudyApi          =  APIs.baseURL +  "endparticipation"
