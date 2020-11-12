@@ -61,7 +61,7 @@ class Constant: NSObject {
     
     struct APIs {
         //saveUserSteps
-        static let baseURL              =  "http://ec2-54-221-96-120.compute-1.amazonaws.com:8080/"
+        static let baseURL              =  "http://postoptracker.net:8080/"
         static let checkStudyCode       =  APIs.baseURL + "checkstudycode"
         static let signUp               =  APIs.baseURL + "signup"
         static let endStudyApi          =  APIs.baseURL +  "endparticipation"
