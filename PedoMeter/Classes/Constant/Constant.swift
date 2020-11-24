@@ -57,7 +57,7 @@ class Constant: NSObject {
         
     }
     
-    
+    //send data to server
     
     struct APIs {
         //saveUserSteps
